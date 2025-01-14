@@ -2,6 +2,9 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 
+enum Decision{
+    ONE_RUN,TWO_RUNS,THREE_RUNS,BOUNDARY,SIX,WIDE,WICKET,NO_BALL
+}
 public class Scoreboard {
     int runsScored = 0;
     int wickets = 0;
@@ -19,6 +22,46 @@ public class Scoreboard {
             e.printStackTrace();
         }
     }
+
+    private void updateScoreboard(String decision) {
+        //Updating the scoreboard based on decision
+        switch (decision) {
+            case "0":
+                this.ballsRemaining--;
+                break;
+            case "1":
+                this.runsScored++;
+                this.ballsRemaining--;
+                break;
+            case "2":
+                this.runsScored+=2;
+                this.ballsRemaining--;
+                break;
+            case "3":
+                this.runsScored+=3;
+                this.ballsRemaining--;
+                break;
+            case "4":
+                this.runsScored+=4;
+                this.ballsRemaining--;
+                break;
+            case "6":
+                this.runsScored+=6;
+                this.ballsRemaining--;
+                break;
+            case "W":
+                this.wickets++;
+                this.ballsRemaining--;
+                break;
+            case "WD":
+                this.runsScored++;
+                break;
+            default:
+                System.out.println("Invalid Decision!");
+        }
+    }
+
+
 
     public static void main(String[] args) throws InterruptedException {
         Scoreboard scoreboard = new Scoreboard();
@@ -63,43 +106,7 @@ public class Scoreboard {
             String decision = scanner.nextLine();
 
             //Updating the scoreboard based on decision
-            switch (decision) {
-                case "0":
-                    scoreboard.ballsRemaining--;
-                    break;
-                case "1":
-                    scoreboard.runsScored++;
-                    scoreboard.ballsRemaining--;
-                    break;
-                case "2":
-                    scoreboard.runsScored+=2;
-                    scoreboard.ballsRemaining--;
-                    break;
-                case "3":
-                    scoreboard.runsScored+=3;
-                    scoreboard.ballsRemaining--;
-                    break;
-                case "4":
-                    scoreboard.runsScored+=4;
-                    scoreboard.ballsRemaining--;
-                    break;
-                case "6":
-                    scoreboard.runsScored+=6;
-                    scoreboard.ballsRemaining--;
-                    break;
-                case "W":
-                    scoreboard.wickets++;
-                    scoreboard.ballsRemaining--;
-                    break;
-                case "WD":
-                    scoreboard.runsScored++;
-                    break;
-                default:
-                    System.out.println("Invalid Decision!");
-                    TimeUnit.SECONDS.sleep(1);
-
-
-            }
+            scoreboard.updateScoreboard(decision);
 
 
         }
@@ -108,5 +115,3 @@ public class Scoreboard {
         System.out.println(scoreboard.runsScored+"-"+scoreboard.wickets);
     }
 }
-//Was this change made
-//Can I see the change
