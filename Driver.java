@@ -1,5 +1,9 @@
 import java.io.IOException;
 
+enum Decision{
+    DOT_BALL,ONE_RUN,TWO_RUNS,THREE_RUNS,BOUNDARY,SIX,WIDE,WICKET,NO_BALL
+}
+
 public class Driver {
     public static void clear() {
         try {

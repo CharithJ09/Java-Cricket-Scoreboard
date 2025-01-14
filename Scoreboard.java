@@ -2,9 +2,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 
-enum Decision{
-    DOT_BALL,ONE_RUN,TWO_RUNS,THREE_RUNS,BOUNDARY,SIX,WIDE,WICKET,NO_BALL
-}
 public class Scoreboard {
     int runsScored = 0;
     int wickets = 0;
