@@ -5,7 +5,7 @@ public class Scoreboard {
     Batsman strikerBatsman;
     Batsman nonStrikerbatsman;
     Bowler currentBowler;
-    double runRate;
+    float runRate;
     int runsScored = 0;
     int wickets = 0;
     int oversRemaining;
@@ -113,7 +113,7 @@ public class Scoreboard {
 
     private void calculateRunRate() {
         if(this.currentOver != 0){
-            this.runRate = (double) this.runsScored /this.currentOver ;
+            this.runRate = (float) this.runsScored /this.currentOver ;
         }
     }
 
@@ -147,6 +147,7 @@ public class Scoreboard {
             System.out.println(scoreboard.runsScored+"-"+scoreboard.wickets);
             System.out.println("Overs Remaining: "+scoreboard.oversRemaining);
             System.out.println("Balls remaining: "+scoreboard.ballsRemaining);
+            System.out.printf("Run Rate: %.2f\n",scoreboard.runRate);
             System.out.println(scoreboard.currentOver+"."+scoreboard.currentBall+" | "+scoreboard.overProgression);
 
             //Resetting balls remaining
@@ -156,7 +157,11 @@ public class Scoreboard {
                 System.out.println(scoreboard.runsScored+"-"+scoreboard.wickets);
                 System.out.println("Overs Remaining: "+scoreboard.oversRemaining);
                 System.out.println("Balls remaining: "+scoreboard.ballsRemaining);
+                System.out.printf("Run Rate: %.2f\n",scoreboard.runRate);
                 System.out.println(scoreboard.currentOver+"."+scoreboard.currentBall+" | "+scoreboard.overProgression);
+                TimeUnit.SECONDS.sleep(1); // Delay for 1 seconds
+                Driver.clear();
+
 
                 System.out.println("End of Over...");
                 TimeUnit.SECONDS.sleep(1); // Delay for 1 seconds
@@ -165,6 +170,7 @@ public class Scoreboard {
                 scoreboard.oversRemaining--;
                 scoreboard.currentOver++;
                 scoreboard.currentBall=0;
+                scoreboard.calculateRunRate();
                 if (scoreboard.oversRemaining == 0) {break;}
             }
 
