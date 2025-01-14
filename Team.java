@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Team {
     private String teamName;
-    private List<String> players;
+    private List<Player> players;
     private int teamScore;
     private int playersPerTeam;
 
@@ -16,9 +16,9 @@ public class Team {
     }
 
     // Add a player to the team
-    public boolean addPlayer(String playerName) {
+    public boolean addPlayer(Player player) {
         if (players.size() < playersPerTeam) {
-            players.add(playerName);
+            players.add(player);
             return true;
         } else {
             System.out.println("Cannot add more players. Team is full.");
@@ -27,7 +27,7 @@ public class Team {
     }
 
     // Update team score
-    public void updateScore(int runs) {
+    public void updateTeamScore(int runs) {
         this.teamScore += runs;
     }
 
@@ -41,7 +41,8 @@ public class Team {
         System.out.println("Team Name: " + teamName);
         System.out.println("Players:");
         for (int i = 0; i < players.size(); i++) {
-            System.out.println((i + 1) + ". " + players.get(i));
+            Player player = players.get(i);
+            System.out.println((i + 1) + ". " + player.playerName + " - Runs: " + player.totalRuns + ", Sixes: " + player.totalSixes + ", Boundaries: " + player.totalBoundaries);
         }
         System.out.println("Team Score: " + teamScore);
     }
@@ -55,7 +56,7 @@ public class Team {
         this.teamName = teamName;
     }
 
-    public List<String> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 
@@ -72,14 +73,15 @@ public class Team {
         Team team = new Team("Warriors", 11);
 
         // Adding players
-        team.addPlayer("Player 1");
-        team.addPlayer("Player 2");
-        team.addPlayer("Player 3");
+        team.addPlayer(new Player("Player 1"));
+        team.addPlayer(new Player("Player 2"));
+        team.addPlayer(new Player("Player 3"));
 
-        // Updating score
-        team.updateScore(50);
+        // Updating team score
+        team.updateTeamScore(50);
 
         // Displaying team details
         team.displayTeamDetails();
     }
 }
+
