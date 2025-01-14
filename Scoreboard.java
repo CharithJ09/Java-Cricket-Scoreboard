@@ -11,18 +11,7 @@ public class Scoreboard {
     int oversRemaining;
     int ballsRemaining;
 
-    public static void clear() {
-        try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                new ProcessBuilder("clear").inheritIO().start().waitFor();
-            }
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
+    //Converting a string decision into an enum
     private static Decision convertStringToDecision(String decision) {
         switch (decision) {
             case "0":
@@ -55,8 +44,8 @@ public class Scoreboard {
         return null;
     }
 
-    private void updateScoreboard(Decision decision) {
-        //Updating the scoreboard based on decision
+    //Updating the Score based on the decision
+    private void updateScore(Decision decision) {
         switch (decision) {
             case DOT_BALL:
                 this.ballsRemaining--;
@@ -117,13 +106,13 @@ public class Scoreboard {
         //Starting the match
         System.out.println("Starting Match...");
         TimeUnit.SECONDS.sleep(2); // Delay for 2 seconds
-        clear();
+        Driver.clear();
         scanner.nextLine();
 
         //Looping until end of overs or all wickets are down
         while(scoreboard.oversRemaining > 0 && scoreboard.wickets < 10){
 
-            clear();
+            Driver.clear();
 
             //Resetting balls remaining
             if(scoreboard.ballsRemaining == 0){
@@ -144,11 +133,11 @@ public class Scoreboard {
             String decision = scanner.nextLine();
 
             //Updating the scoreboard based on decision
-            scoreboard.updateScoreboard(convertStringToDecision(decision));
+            scoreboard.updateScore(convertStringToDecision(decision));
 
 
         }
-        clear();
+        Driver.clear();
         System.out.println("End of Innings...");
         System.out.println(scoreboard.runsScored+"-"+scoreboard.wickets);
     }
