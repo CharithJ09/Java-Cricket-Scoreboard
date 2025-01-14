@@ -32,20 +32,16 @@ public class Player {
                 totalRuns+=3;
                 break;
             case BOUNDARY :
-                totalBoundaries+=4 ;
+                totalBoundaries+=1 ;
                 totalRuns+=4;
                 break;
             case SIX  :
-                totalSixes+=6 ;
+                totalSixes+=1;
                 totalRuns+=6;
                 break;
         }
     }
 
-    //displaying player individual statistics
-    public void displayPlayerStatistics(){
-
-    }
 
 
 
