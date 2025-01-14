@@ -5,18 +5,11 @@ public class Match {
     int overLimit;
     int oversPerBowler;
     int ballsPerOver;
-    int playersPerTeam;
 
     int setOverLimit(){
         System.out.println("Enter Over Limit:");
        overLimit = scanner.nextInt();
        return overLimit;
-    }
-    int setplayerPerTeam(){
-        System.out.println("Enter Players Per Team:");
-        playersPerTeam=scanner.nextInt();
-        return playersPerTeam;
-
     }
     int setOversPerBowler(){
         System.out.println("Enter Overs Per Bowler:");
@@ -60,7 +53,7 @@ class Inning extends Match{
     }
 
     void changeInning(){
-        if((currentWickets == (playersPerTeam-1))||(currentOvers == overLimit)){
+        if((currentWickets == (battingTeam.getPlayersPerTeam()-1))||(currentOvers == overLimit)){
             if(!secondInning){
                 System.out.println("First inning is over...");
                 System.out.println("Total Runs: "+currentRuns);
