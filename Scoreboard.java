@@ -3,7 +3,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 
 enum Decision{
-    ONE_RUN,TWO_RUNS,THREE_RUNS,BOUNDARY,SIX,WIDE,WICKET,NO_BALL
+    DOT_BALL,ONE_RUN,TWO_RUNS,THREE_RUNS,BOUNDARY,SIX,WIDE,WICKET,NO_BALL
 }
 public class Scoreboard {
     int runsScored = 0;
@@ -23,41 +23,79 @@ public class Scoreboard {
         }
     }
 
-    private void updateScoreboard(String decision) {
-        //Updating the scoreboard based on decision
+    private static Decision convertStringToDecision(String decision) {
         switch (decision) {
             case "0":
+                return Decision.DOT_BALL;
+
+            case "1":
+                return Decision.ONE_RUN;
+
+            case "2":
+                return Decision.TWO_RUNS;
+
+            case "3":
+                return Decision.THREE_RUNS;
+
+            case "4":
+                return Decision.BOUNDARY;
+
+            case "6":
+                return Decision.SIX;
+
+            case "W":
+                return Decision.WICKET;
+
+            case "WD":
+                return Decision.WIDE;
+
+            case "NB":
+                return Decision.NO_BALL;
+        }
+        return null;
+    }
+
+    private void updateScoreboard(Decision decision) {
+        //Updating the scoreboard based on decision
+        switch (decision) {
+            case DOT_BALL:
                 this.ballsRemaining--;
                 break;
-            case "1":
+
+            case ONE_RUN:
                 this.runsScored++;
                 this.ballsRemaining--;
                 break;
-            case "2":
+
+            case TWO_RUNS:
                 this.runsScored+=2;
                 this.ballsRemaining--;
                 break;
-            case "3":
+
+            case THREE_RUNS:
                 this.runsScored+=3;
                 this.ballsRemaining--;
                 break;
-            case "4":
+
+            case BOUNDARY:
                 this.runsScored+=4;
                 this.ballsRemaining--;
                 break;
-            case "6":
+
+            case SIX:
                 this.runsScored+=6;
                 this.ballsRemaining--;
                 break;
-            case "W":
+
+            case WICKET:
                 this.wickets++;
                 this.ballsRemaining--;
                 break;
-            case "WD":
+
+            case NO_BALL:
+            case WIDE:
                 this.runsScored++;
                 break;
-            default:
-                System.out.println("Invalid Decision!");
         }
     }
 
@@ -102,11 +140,11 @@ public class Scoreboard {
             System.out.println("Balls remaining: "+scoreboard.ballsRemaining);
 
             //Taking umpire decision
-            System.out.print("Enter Decision(0/1/2/3/4/6/W/WD): ");
+            System.out.print("Enter Decision(0/1/2/3/4/6/W/WD/NB): ");
             String decision = scanner.nextLine();
 
             //Updating the scoreboard based on decision
-            scoreboard.updateScoreboard(decision);
+            scoreboard.updateScoreboard(convertStringToDecision(decision));
 
 
         }
