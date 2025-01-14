@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 
@@ -7,12 +8,17 @@ public class Scoreboard {
     int oversRemaining;
     int ballsRemaining;
 
-     static void clear() {
-        for (int i = 0; i < 100; i++) {
-            System.out.println();
+    public static void clear() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
         }
     }
-
 
     public static void main(String[] args) throws InterruptedException {
         Scoreboard scoreboard = new Scoreboard();
@@ -102,4 +108,3 @@ public class Scoreboard {
         System.out.println(scoreboard.runsScored+"-"+scoreboard.wickets);
     }
 }
-
