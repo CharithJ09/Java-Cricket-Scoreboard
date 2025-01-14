@@ -9,6 +9,7 @@ public class Batsman extends Player{
         super();
     }
 
+    //Updating player individual statistics
     public void updatePlayerStats(Decision decision){
         ballsFaced++;
         super.updatePlayerStats(decision);

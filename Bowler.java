@@ -3,10 +3,11 @@ public class Bowler extends Player{
     int totalDotBalls = 0;
     int ballsDelivered = 0;
 
-    Bowler(){
+    public Bowler(){
         super();
     }
 
+    //Updating player individual statistics
     public void updatePlayerStats(Decision decision){
         ballsDelivered++;
         super.updatePlayerStats(decision);
