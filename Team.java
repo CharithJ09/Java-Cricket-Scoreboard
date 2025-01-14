@@ -20,13 +20,13 @@ public class Team {
     }
 
     // Add a player to the team
-    public boolean addPlayer(Player player) {
+    public void addPlayer(Player player) {
         if (players.size() < playersPerTeam) {
             players.add(player);
-            return true;
+            //return true;
         } else {
             System.out.println("Cannot add more players. Team is full.");
-            return false;
+            //return false;
         }
     }
 
