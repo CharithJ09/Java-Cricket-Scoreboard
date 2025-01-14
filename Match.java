@@ -5,7 +5,6 @@ public class Match {
     int overLimit;
     int oversPerBowler;
     int ballsPerOver;
-    int playersPerTeam;
 
     int setOverLimit(){
         System.out.println("Enter Over Limit:");
@@ -54,7 +53,7 @@ class Inning extends Match{
     }
 
     void changeInning(){
-        if((currentWickets == playersPerTeam)||(currentOvers == overLimit)){
+        if((currentWickets == (battingTeam.getPlayersPerTeam()-1))||(currentOvers == overLimit)){
             if(!secondInning){
                 System.out.println("First inning is over...");
                 System.out.println("Total Runs: "+currentRuns);
