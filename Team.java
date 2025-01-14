@@ -3,8 +3,8 @@ import java.util.List;
 
 public class Team {
     private static int teamCount = 0;
-    private int teamId;
-    private String teamName;
+    public int teamId;
+    public String teamName;
     private List<Player> players;
     private int teamScore;
     private int playersPerTeam;
