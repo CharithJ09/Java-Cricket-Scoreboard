@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Team {
+    private static int teamCount = 0;
+    private int teamId;
     private String teamName;
     private List<Player> players;
     private int teamScore;
@@ -13,6 +15,8 @@ public class Team {
         this.playersPerTeam = playersPerTeam;
         this.players = new ArrayList<>();
         this.teamScore = 0;
+        teamCount++;
+        this.teamId = teamCount;
     }
 
     // Add a player to the team
@@ -38,6 +42,7 @@ public class Team {
 
     // Display team details
     public void displayTeamDetails() {
+        System.out.println("Team ID: " + teamId);
         System.out.println("Team Name: " + teamName);
         System.out.println("Players:");
         for (int i = 0; i < players.size(); i++) {
@@ -68,20 +73,32 @@ public class Team {
         this.playersPerTeam = playersPerTeam;
     }
 
+    public static int getTeamCount() {
+        return teamCount;
+    }
+
+    public int getTeamId() {
+        return teamId;
+    }
+
     // Main method for testing
     public static void main(String[] args) {
-        Team team = new Team("Warriors", 11);
+        Team team1 = new Team("Warriors", 11);
+        Team team2 = new Team("Champions", 11);
 
         // Adding players
-        team.addPlayer(new Player("Player 1"));
-        team.addPlayer(new Player("Player 2"));
-        team.addPlayer(new Player("Player 3"));
+        team1.addPlayer(new Player("Player 1"));
+        team1.addPlayer(new Player("Player 2"));
+        team1.addPlayer(new Player("Player 3"));
 
         // Updating team score
-        team.updateTeamScore(50);
+        team1.updateTeamScore(50);
 
         // Displaying team details
-        team.displayTeamDetails();
+        team1.displayTeamDetails();
+
+        // Display team count
+        System.out.println("Total Teams: " + Team.getTeamCount());
     }
 }
 
