@@ -106,13 +106,13 @@ public class Scoreboard {
         //Starting the match
         System.out.println("Starting Match...");
         TimeUnit.SECONDS.sleep(2); // Delay for 2 seconds
-        clear();
+        Driver.clear();
         scanner.nextLine();
 
         //Looping until end of overs or all wickets are down
         while(scoreboard.oversRemaining > 0 && scoreboard.wickets < 10){
 
-            clear();
+            Driver.clear();
 
             //Resetting balls remaining
             if(scoreboard.ballsRemaining == 0){
@@ -137,7 +137,7 @@ public class Scoreboard {
 
 
         }
-        clear();
+        Driver.clear();
         System.out.println("End of Innings...");
         System.out.println(scoreboard.runsScored+"-"+scoreboard.wickets);
     }
