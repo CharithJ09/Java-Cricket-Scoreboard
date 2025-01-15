@@ -42,26 +42,22 @@ public class Driver {
         team2.setPlayersPerTeam(playersInATeam);
 
         //Adding players to team1
-        Player[] team1Players=new Player[playersInATeam];
         System.out.println("Please enter the names of team "+team1.teamName);
         for (int i=0;i<playersInATeam;i++){
             System.out.print((i+1)+"th player's name: ");
             String playerName=scanner.nextLine();
             scanner.nextLine();
-            team1Players[i]=new Player(playerName);
-            team1.addPlayer(team1Players[i]);
+            team1.addPlayer(new Player(playerName));
             System.out.println();
         }
 
         //Adding players to team2
-        Player[] team2Players=new Player[playersInATeam];
         System.out.println("Please enter the names of team "+team2.teamName);
         for (int i=0;i<playersInATeam;i++){
             System.out.print((i+1)+"th player's name: ");
             String playerName=scanner.nextLine();
             scanner.nextLine();
-            team2Players[i]=new Player(playerName);
-            team2.addPlayer(team1Players[i]);
+            team2.addPlayer(new Player(playerName));
             System.out.println();
         }
 

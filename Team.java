@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Team {
-    private static int teamCount = 0;
+    static int teamCount = 0;
     public int teamId;
     public String teamName;
-    private List<Player> players;
-    private int teamScore;
-    private int playersPerTeam;
+    List<Player> players;
+    int teamScore;
+    int playersPerTeam;
 
     // Constructor
     public Team(String teamName, int playersPerTeam) {
