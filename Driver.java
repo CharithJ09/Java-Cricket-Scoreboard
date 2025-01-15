@@ -6,7 +6,7 @@ enum Decision{
 }
 
 public class Driver {
-    Scanner scanner=new Scanner(System.in);
+    public static int playersInATeam=0;
     public static void clear() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
@@ -20,9 +20,78 @@ public class Driver {
     }
 
     public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+
+        Team team1=new Team();
+        Team team2=new Team();
+
+        //Setting the teams
+        System.out.print("Enter the name of the first team: ");
+        String team01Name=scanner.nextLine();
+        scanner.nextLine();
+        System.out.print("Enter the number of players in a team: ");
+        playersInATeam=scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("\n\nEnter the name of the second team: ");
+        String team02Name=scanner.nextLine();
+        scanner.nextLine();
+
+        team1.setTeamName(team01Name);
+        team1.setPlayersPerTeam(playersInATeam);
+        team2.setTeamName(team02Name);
+        team2.setPlayersPerTeam(playersInATeam);
+
+        //Adding players to team1
+        Player[] team1Players=new Player[playersInATeam];
+        System.out.println("Please enter the names of team "+team1.teamName);
+        for (int i=0;i<playersInATeam;i++){
+            System.out.print((i+1)+"th player's name: ");
+            String playerName=scanner.nextLine();
+            scanner.nextLine();
+            team1Players[i]=new Player(playerName);
+            team1.addPlayer(team1Players[i]);
+            System.out.println();
+        }
+
+        //Adding players to team2
+        Player[] team2Players=new Player[playersInATeam];
+        System.out.println("Please enter the names of team "+team2.teamName);
+        for (int i=0;i<playersInATeam;i++){
+            System.out.print((i+1)+"th player's name: ");
+            String playerName=scanner.nextLine();
+            scanner.nextLine();
+            team2Players[i]=new Player(playerName);
+            team2.addPlayer(team1Players[i]);
+            System.out.println();
+        }
+
+
+
+
 
     }
-    void setTeams(){
-        System.out.println("");
+    /*void setTeams(){
+        System.out.print("Enter the name of the first team: ");
+        String team1Name=scanner.nextLine();
+        scanner.nextLine();
+        System.out.print("Enter the number of players in a team: ");
+        playersInATeam=scanner.nextInt();
+        scanner.nextLine();
+        Team team01=new Team(team1Name,playersInATeam);
+
+        System.out.print("\n\nEnter the name of the second team: ");
+        String team2Name=scanner.nextLine();
+        scanner.nextLine();
+        Team team02=new Team(team2Name,playersInATeam);
+        clear();
     }
+
+    void setPlayers(){
+        Player[] players=new Player[playersInATeam];
+        
+        System.out.println("Please enter the names of team ");
+
+    }
+
+    */
 }

@@ -19,6 +19,11 @@ public class Team {
         this.teamId = teamCount;
     }
 
+    // Default Constructor
+    public Team(){
+
+    }
+
     // Add a player to the team
     public void addPlayer(Player player) {
         if (players.size() < playersPerTeam) {
@@ -54,7 +59,7 @@ public class Team {
 
     // Getters and setters
     public String getTeamName() {
-        return teamName;
+        return this.teamName;
     }
 
     public void setTeamName(String teamName) {
@@ -81,24 +86,5 @@ public class Team {
         return teamId;
     }
 
-    // Main method for testing
-    public static void main(String[] args) {
-        Team team1 = new Team("Warriors", 11);
-        Team team2 = new Team("Champions", 11);
-
-        // Adding players
-        team1.addPlayer(new Player("Player 1"));
-        team1.addPlayer(new Player("Player 2"));
-        team1.addPlayer(new Player("Player 3"));
-
-        // Updating team score
-        team1.updateTeamScore(50);
-
-        // Displaying team details
-        team1.displayTeamDetails();
-
-        // Display team count
-        System.out.println("Total Teams: " + Team.getTeamCount());
-    }
 }
 
