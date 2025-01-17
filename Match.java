@@ -1,4 +1,3 @@
-import java.util.Objects;
 import java.util.Scanner;
 public class Match {
     Scanner scanner = new Scanner(System.in);
@@ -59,8 +58,14 @@ class Inning extends Match{
         }
     }
 
-    void strikerBatsman(){
+    String nextBatsman(){
         System.out.println("Enter Next Batsman:");
-        System.out.println(battingTeam.);
+        System.out.println(battingTeam.getPlayers());
+        return scanner.nextLine();
+    }
+    String nextBaller(){
+        System.out.println("Enter Next Baller:");
+        System.out.println(battingTeam.getPlayers());
+        return scanner.nextLine();
     }
 }
