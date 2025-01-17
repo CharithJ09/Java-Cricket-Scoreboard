@@ -24,25 +24,15 @@ public class Match {
 }
 
 class Inning extends Match{
-    Team team1;
-    Team team2;
     static Team battingTeam;
     static Team ballingTeam;
-    String team;
     double currentOvers;
     int currentWickets;
     int currentRuns;
     static boolean secondInning = false;
-    void toss(){
-        System.out.println("Enter the batting team: ");
-        team = scanner.nextLine();
-        if (Objects.equals(team, "Team1")){
-            battingTeam = team1;
-            ballingTeam = team2;
-        }else {
-            battingTeam = team2;
-            ballingTeam = team1;
-        }
+    void toss( Team batTeam, Team ballTeam){
+       battingTeam = batTeam;
+        ballingTeam = ballTeam;
     }
 
     void CurrentMatch(int currentRuns, double currentOvers, int currentWickets){
@@ -59,10 +49,18 @@ class Inning extends Match{
                 System.out.println("Total Runs: "+currentRuns);
                 System.out.println("Target is: "+(currentRuns++));
                 System.out.println("Required Run rate is: "+(currentRuns/overLimit));
+                Team temp = ballingTeam;
+                ballingTeam = battingTeam;
+                battingTeam = temp;
                 secondInning = true;
             }else{
                 System.out.println("Match is Over...");
             }
         }
+    }
+
+    void strikerBatsman(){
+        System.out.println("Enter Next Batsman:");
+        System.out.println(battingTeam.);
     }
 }
