@@ -111,11 +111,16 @@ public class Scoreboard {
         }
     }
 
+    //To calculate the run rate at the end of each over
     private void calculateRunRate() {
         if(this.currentOver != 0){
             this.runRate = (float) this.runsScored /this.currentOver ;
         }
     }
+
+    //Displaying the formatted Scoreboard
+
+
 
 
 
