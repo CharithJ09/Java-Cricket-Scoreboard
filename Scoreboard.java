@@ -1,51 +1,33 @@
 import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Scoreboard {
+    String teamA;
+    String teamB;
+
     Batsman strikerBatsman;
+    int strikerScore;
+
     Batsman nonStrikerbatsman;
+    int nonStrikerScore;
+
+    //To temporary hold values when swapping
+    Batsman switchBatsman;
+    int switchScore;
+
     Bowler currentBowler;
     float runRate;
     int runsScored = 0;
     int wickets = 0;
+    int ballsPerOver;
     int oversRemaining;
     int ballsRemaining;
     int currentOver = 0;
     int currentBall = 0;
     String overProgression = "";
+    String over = "0.0";
 
-    //Converting a string decision into an enum
-    private static Decision convertStringToDecision(String decision) {
-        switch (decision) {
-            case "0":
-                return Decision.DOT_BALL;
-
-            case "1":
-                return Decision.ONE_RUN;
-
-            case "2":
-                return Decision.TWO_RUNS;
-
-            case "3":
-                return Decision.THREE_RUNS;
-
-            case "4":
-                return Decision.BOUNDARY;
-
-            case "6":
-                return Decision.SIX;
-
-            case "W":
-                return Decision.WICKET;
-
-            case "WD":
-                return Decision.WIDE;
-
-            case "NB":
-                return Decision.NO_BALL;
-        }
-        return null;
-    }
 
     //Updating the Score based on the decision
     private void updateScoreBoard(Decision decision) {
@@ -58,6 +40,8 @@ public class Scoreboard {
 
             case ONE_RUN:
                 this.runsScored++;
+                this.strikerScore++;
+                this.switchStriker();
                 this.ballsRemaining--;
                 this.currentBall++;
                 this.overProgression += "1 ";
@@ -65,6 +49,7 @@ public class Scoreboard {
 
             case TWO_RUNS:
                 this.runsScored+=2;
+                this.strikerScore+=2;
                 this.ballsRemaining--;
                 this.currentBall++;
                 this.overProgression += "2 ";
@@ -72,6 +57,8 @@ public class Scoreboard {
 
             case THREE_RUNS:
                 this.runsScored+=3;
+                this.strikerScore+=3;
+                this.switchStriker();
                 this.ballsRemaining--;
                 this.currentBall++;
                 this.overProgression += "3 ";
@@ -79,6 +66,7 @@ public class Scoreboard {
 
             case BOUNDARY:
                 this.runsScored+=4;
+                this.strikerScore+=4;
                 this.ballsRemaining--;
                 this.currentBall++;
                 this.overProgression += "4 ";
@@ -86,6 +74,7 @@ public class Scoreboard {
 
             case SIX:
                 this.runsScored+=6;
+                this.strikerScore+=6;
                 this.ballsRemaining--;
                 this.currentBall++;
                 this.overProgression += "6 ";
@@ -93,6 +82,8 @@ public class Scoreboard {
 
             case WICKET:
                 this.wickets++;
+                this.strikerScore = 0;
+                //*****Get the next Batsman to strikerBatsman
                 this.ballsRemaining--;
                 this.currentBall++;
                 this.overProgression += "W ";
@@ -109,6 +100,7 @@ public class Scoreboard {
                 break;
 
         }
+        over = String.valueOf(this.currentOver)+"."+String.valueOf(this.currentBall);
     }
 
     //To calculate the run rate at the end of each over
@@ -118,15 +110,165 @@ public class Scoreboard {
         }
     }
 
+    //To switch the Striker and Non striker batsman (when 1 run, 3 runs or end of over occurs)
+    private void switchStriker(){
+        //Swapping the batsman objects
+        switchBatsman = strikerBatsman;
+        strikerBatsman = nonStrikerbatsman;
+        nonStrikerbatsman = switchBatsman;
+
+        //swapping the scores
+        switchScore =strikerScore;
+        strikerScore = nonStrikerScore;
+        nonStrikerScore = switchScore;
+    }
+
     //Displaying the formatted Scoreboard
+    private void displayScoreBoard() {
+        // Printing the Scoreboard Header
+        System.out.printf("+-------------------------------------------+%n");
+        System.out.printf("|                SCOREBOARD                 |%n");
+        System.out.printf("+-------------------------------------------+%n");
+
+        // Printing Team Scores
+        System.out.printf("| %19s vs %-18s |%n", teamA,teamB);
+        System.out.printf("+-------------------------------------------+%n");
+        System.out.printf("| Over:%6s |%6d - %-20d|%n", over,runsScored,wickets);
+        System.out.printf("| CRR:  %-35.2f |%n", runRate);
+        System.out.printf("+-------------------------------------------+%n");
+
+        // Printing Batsman Scores
+        System.out.printf("| > %-10s - %-3d Runs                   |%n", strikerBatsman.playerName,strikerScore);
+        System.out.printf("|   %-10s - %-3d Runs                   |%n", nonStrikerbatsman.playerName, nonStrikerScore);
+        System.out.printf("+-------------------------------------------+%n");
+
+        // Printing Bowler Details
+        System.out.printf("| %-12s  %-28s|%n",currentBowler.playerName, overProgression);
+        System.out.printf("+-------------------------------------------+%n");
+    }
+
+    //Getting the final decision from the user
+    private static Decision getDecision() {
+        //Storing the valid decisions
+        String[] decisions = {"0","1","2","3","4","6","WD","W","NB"};
+        Decision decisionFinal = Decision.NO_BALL;
+        Scanner scanner = new Scanner(System.in);
+        System.out.printf("%n| DOT_BALL - 0 | ONE_RUN - 1 | TWO_RUNS - 2 | THREE_RUNS - 3 | BOUNDARY - 4 | SIX - 6 | WIDE - WD | WICKET - W | NO_BALL - NB |%n");
+        System.out.print("Enter Decision: ");
+        String decision = scanner.nextLine();
+        //Checking if user entered a valid decision
+        while (!Arrays.asList(decisions).contains(decision)){
+            System.out.print("Invalid Decision! Try again: ");
+            decision = scanner.nextLine();
+        }
+        switch (decision) {
+            case "0":
+                decisionFinal =  Decision.DOT_BALL;
+                break;
+
+            case "1":
+                decisionFinal =  Decision.ONE_RUN;
+                break;
+
+            case "2":
+                decisionFinal =  Decision.TWO_RUNS;
+                break;
+
+            case "3":
+                decisionFinal =  Decision.THREE_RUNS;
+                break;
+
+            case "4":
+                decisionFinal =  Decision.BOUNDARY;
+                break;
+
+            case "6":
+                decisionFinal =  Decision.SIX;
+                break;
+
+            case "W":
+                decisionFinal =  Decision.WICKET;
+                break;
+
+            case "WD":
+                decisionFinal =  Decision.WIDE;
+                break;
+
+            case "NB":
+                break;
+        }
+        return decisionFinal;
+    }
+
+    //Starting the scoreboard for an innings
+    public void startScoreBoard()  throws InterruptedException {
+
+        //Starting the match
+        System.out.println("Starting Match...");
+        TimeUnit.SECONDS.sleep(1); // Delay for 1 seconds
+        Driver.clear();
+
+        //Looping until end of overs or all wickets are down
+        while(this.oversRemaining > 0 && this.wickets < 10){
+            Driver.clear();
+
+            //Displaying the score
+            this.displayScoreBoard();
+
+            //Resetting balls remaining
+            if(this.ballsRemaining == 0){
+                //*****Get the next Bowler
+                this.switchStriker();
+                Driver.clear();
+
+                //Displaying the score
+                this.displayScoreBoard();
+                TimeUnit.SECONDS.sleep(1); // Delay for 1 seconds
+                Driver.clear();
+
+                //Resetting Values at the end of the over
+                System.out.println("End of Over...");
+                TimeUnit.SECONDS.sleep(1); // Delay for 1 seconds
+                this.ballsRemaining = this.ballsPerOver;
+                this.overProgression = "";
+                this.oversRemaining--;
+                this.currentOver++;
+                this.currentBall=0;
+                this.calculateRunRate();
+                this.over = String.valueOf(this.currentOver)+"."+String.valueOf(this.currentBall);
+                this.displayScoreBoard();
+                if (this.oversRemaining == 0) {break;}
+            }
+
+            //Updating the scoreboard based on decision
+            this.updateScoreBoard(getDecision());
+
+
+        }
+        Driver.clear();
+        System.out.println("End of Innings...");
+        this.displayScoreBoard();
+    }
+
 
 
 
 
 
     public static void main(String[] args) throws InterruptedException {
+
+        Player batsman1 = new Batsman("Warner");
+        Player batsman2 = new Batsman("Mitch");
+        Player bowler1 = new Bowler("Boult");
+
         Scoreboard scoreboard = new Scoreboard();
         Scanner scanner = new Scanner(System.in);
+        scoreboard.strikerBatsman = (Batsman) batsman1;
+        scoreboard.nonStrikerbatsman = (Batsman) batsman2;
+        scoreboard.currentBowler = (Bowler) bowler1;
+        scoreboard.teamA = "Aus";
+        scoreboard.teamB = "NZ";
+
 
         //Getting Over limit
         System.out.print("Enter Number of Overs: ");
@@ -134,63 +276,9 @@ public class Scoreboard {
 
         //Getting balls per over
         System.out.print("Enter Number of balls per over: ");
-        int ballsPerOver = scanner.nextInt();
-        scoreboard.ballsRemaining = ballsPerOver;
+        scoreboard.ballsPerOver = scanner.nextInt();
+        scoreboard.ballsRemaining = scoreboard.ballsPerOver;
 
-        //Starting the match
-        System.out.println("Starting Match...");
-        TimeUnit.SECONDS.sleep(1); // Delay for 1 seconds
-        Driver.clear();
-        scanner.nextLine();
-
-        //Looping until end of overs or all wickets are down
-        while(scoreboard.oversRemaining > 0 && scoreboard.wickets < 10){
-
-            Driver.clear();
-
-            //Displaying the score
-            System.out.println(scoreboard.runsScored+"-"+scoreboard.wickets);
-            System.out.println("Overs Remaining: "+scoreboard.oversRemaining);
-            System.out.println("Balls remaining: "+scoreboard.ballsRemaining);
-            System.out.printf("Run Rate: %.2f\n",scoreboard.runRate);
-            System.out.println(scoreboard.currentOver+"."+scoreboard.currentBall+" | "+scoreboard.overProgression);
-
-            //Resetting balls remaining
-            if(scoreboard.ballsRemaining == 0){
-                Driver.clear();
-                //Displaying the score
-                System.out.println(scoreboard.runsScored+"-"+scoreboard.wickets);
-                System.out.println("Overs Remaining: "+scoreboard.oversRemaining);
-                System.out.println("Balls remaining: "+scoreboard.ballsRemaining);
-                System.out.printf("Run Rate: %.2f\n",scoreboard.runRate);
-                System.out.println(scoreboard.currentOver+"."+scoreboard.currentBall+" | "+scoreboard.overProgression);
-                TimeUnit.SECONDS.sleep(1); // Delay for 1 seconds
-                Driver.clear();
-
-
-                System.out.println("End of Over...");
-                TimeUnit.SECONDS.sleep(1); // Delay for 1 seconds
-                scoreboard.ballsRemaining = ballsPerOver;
-                scoreboard.overProgression = "";
-                scoreboard.oversRemaining--;
-                scoreboard.currentOver++;
-                scoreboard.currentBall=0;
-                scoreboard.calculateRunRate();
-                if (scoreboard.oversRemaining == 0) {break;}
-            }
-
-
-            //Taking umpire decision
-            System.out.print("Enter Decision(0/1/2/3/4/6/W/WD/NB): ");
-            String decision = scanner.nextLine();
-
-            //Updating the scoreboard based on decision
-            scoreboard.updateScoreBoard(convertStringToDecision(decision));
-
-
-        }
-        Driver.clear();
-        System.out.println("End of Innings...");
-        System.out.println(scoreboard.runsScored+"-"+scoreboard.wickets);
+        scoreboard.startScoreBoard();
     }
 }

@@ -3,8 +3,8 @@ public class Bowler extends Player{
     int totalDotBalls = 0;
     int ballsDelivered = 0;
 
-    public Bowler(){
-        super();
+    public Bowler(String playerName) {
+        super(playerName);
     }
 
     //Updating player individual statistics

@@ -5,8 +5,8 @@ public class Batsman extends Player{
     double strikeRate = 0;
 
 
-    public Batsman(){
-        super();
+    public Batsman(String playerName){
+        super(playerName);
     }
 
     //Updating player individual statistics
