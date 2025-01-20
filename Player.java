@@ -1,12 +1,11 @@
 
 
-public class Player {
+public abstract class Player {
     String playerName;
-    int playerId;
     int totalRuns = 0;
     int totalSixes = 0;
     int totalBoundaries = 0 ;
-    static int playerCount = 0 ;
+
 
     public Player(){
 
@@ -14,7 +13,6 @@ public class Player {
 
     public Player(String playerName){
         this.playerName = playerName;
-        this.playerId = playerCount + 1;
     }
 
 
