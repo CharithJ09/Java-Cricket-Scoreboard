@@ -1,6 +1,4 @@
 public class Batsman extends Player{
-    int totalCenturies = 0 ;
-    int totalHalfCenturies = 0 ;
     int ballsFaced = 0;
     double strikeRate = 0;
 
@@ -14,13 +12,6 @@ public class Batsman extends Player{
         ballsFaced++;
         super.updatePlayerStats(decision);
 
-
-        if(totalRuns == 50){
-            totalHalfCenturies++;
-        } else if (totalRuns == 100){
-            totalHalfCenturies++;
-            totalCenturies++;
-        }
     }
 
     public double calculateStrikeRate(){

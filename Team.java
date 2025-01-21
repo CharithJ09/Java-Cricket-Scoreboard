@@ -8,16 +8,18 @@ public class Team {
     Player[] players;
     int teamScore;
     int playersPerTeam;
+    int batsmenPerTeam;
 
     Scanner scanner=new Scanner(System.in);
     // Constructor
-    public Team(String teamName, int playersPerTeam) {
+    public Team(String teamName, int playersPerTeam,int batsmenPerTeam) {
         this.teamName = teamName;
         this.playersPerTeam = playersPerTeam;
         this.players = new Player[playersPerTeam];
         this.teamScore = 0;
         teamCount++;
         this.teamId = teamCount;
+        this.batsmenPerTeam=batsmenPerTeam;
     }
 
     // Default Constructor
@@ -34,7 +36,7 @@ public class Team {
             this.players[i] = new Batsman(playerName);
             System.out.println();
         }
-        for (int i=0;i<(playersPerTeam-batsmenPerTeam);i++){
+        for (int i=batsmenPerTeam;i<playersPerTeam;i++){
             System.out.print((i+1)+"th bowler's name: ");
             String playerName=scanner.nextLine();
             scanner.nextLine();
@@ -57,12 +59,10 @@ public class Team {
     public void displayTeamDetails() {
         System.out.println("Team ID: " + teamId);
         System.out.println("Team Name: " + teamName);
-        System.out.println("Players:");
-        for (int i = 0; i < players.size(); i++) {
-            Player player = players.get(i);
-            System.out.println((i + 1) + ". " + player.playerName + " - Runs: " + player.totalRuns + ", Sixes: " + player.totalSixes + ", Boundaries: " + player.totalBoundaries);
-        }
-        System.out.println("Team Score: " + teamScore);
+        System.out.println("Players:"+playersPerTeam);
+        System.out.println("Batsmen:"+batsmenPerTeam);
+        System.out.println("Bowlers:"+(playersPerTeam-batsmenPerTeam));
+
     }
 
 
@@ -75,7 +75,7 @@ public class Team {
         this.teamName = teamName;
     }
 
-    public List<Player> getPlayers() {
+    public Player[] getPlayers() {
         return players;
     }
 
