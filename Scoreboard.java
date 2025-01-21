@@ -8,17 +8,17 @@ public class Scoreboard {
     String teamA;
     String teamB;
 
-    Batsman strikerBatsman;
+    Player strikerBatsman;
     int strikerScore;
 
-    Batsman nonStrikerbatsman;
+    Player nonStrikerBatsman;
     int nonStrikerScore;
 
     //To temporary hold values when swapping
-    Batsman switchBatsman;
+    Player switchBatsman;
     int switchScore;
 
-    Bowler currentBowler;
+    Player currentBowler;
     float runRate;
     int runsScored = 0;
     int wickets = 0;
@@ -116,8 +116,8 @@ public class Scoreboard {
     private void switchStriker(){
         //Swapping the batsman objects
         switchBatsman = strikerBatsman;
-        strikerBatsman = nonStrikerbatsman;
-        nonStrikerbatsman = switchBatsman;
+        strikerBatsman = nonStrikerBatsman;
+        nonStrikerBatsman = switchBatsman;
 
         //swapping the scores
         switchScore =strikerScore;
@@ -141,7 +141,7 @@ public class Scoreboard {
 
         // Printing Batsman Scores
         System.out.printf("| > %-10s - %-3d Runs                   |%n", strikerBatsman.playerName,strikerScore);
-        System.out.printf("|   %-10s - %-3d Runs                   |%n", nonStrikerbatsman.playerName, nonStrikerScore);
+        System.out.printf("|   %-10s - %-3d Runs                   |%n", nonStrikerBatsman.playerName, nonStrikerScore);
         System.out.printf("+-------------------------------------------+%n");
 
         // Printing Bowler Details
@@ -265,9 +265,9 @@ public class Scoreboard {
 
         Scoreboard scoreboard = new Scoreboard();
         Scanner scanner = new Scanner(System.in);
-        scoreboard.strikerBatsman = (Batsman) batsman1;
-        scoreboard.nonStrikerbatsman = (Batsman) batsman2;
-        scoreboard.currentBowler = (Bowler) bowler1;
+        scoreboard.strikerBatsman =  batsman1;
+        scoreboard.nonStrikerBatsman = batsman2;
+        scoreboard.currentBowler = bowler1;
         scoreboard.teamA = "Aus";
         scoreboard.teamB = "NZ";
 
