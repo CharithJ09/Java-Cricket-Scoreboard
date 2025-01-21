@@ -25,16 +25,23 @@ public class Match {
         Driver.clear();
     }
     Player getNextBaller(Bowler previousBaller){
+        Driver.clear();
         Player nextBaller = null;
-        int count = 1;
         for (int i=ballingTeam.batsmenPerTeam;i<=ballingTeam.playersPerTeam;i++){
             if(previousBaller == null){
-                System.out.println(count+"."+ballingTeam.players[i].playerName);
+                System.out.println(i+"."+ballingTeam.players[i].playerName);
             }else if(previousBaller != ballingTeam.players[i]) {
-                
+                System.out.println(i+"."+ballingTeam.players[i].playerName);
             }
-            
         }
+        System.out.println("Enter index of the bowler..");
+        int index = scanner.nextInt();
+        if (index >= ballingTeam.batsmenPerTeam){
+            nextBaller = ballingTeam.players[index];
+        }else {
+            System.out.println("Invalid index...");
+        }
+        Driver.clear();
         return nextBaller;
     }
 }
