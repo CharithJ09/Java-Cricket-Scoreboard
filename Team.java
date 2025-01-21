@@ -1,19 +1,20 @@
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Team {
     static int teamCount = 0;
     public int teamId;
     public String teamName;
-    List<Player> players;
+    Player[] players;
     int teamScore;
     int playersPerTeam;
 
+    Scanner scanner=new Scanner(System.in);
     // Constructor
     public Team(String teamName, int playersPerTeam) {
         this.teamName = teamName;
         this.playersPerTeam = playersPerTeam;
-        this.players = new ArrayList<>();
+        this.players = new Player[playersPerTeam];
         this.teamScore = 0;
         teamCount++;
         this.teamId = teamCount;
@@ -25,13 +26,20 @@ public class Team {
     }
 
     // Add a player to the team
-    public void addPlayer(Player player) {
-        if (players.size() < playersPerTeam) {
-            players.add(player);
-            //return true;
-        } else {
-            System.out.println("Cannot add more players. Team is full.");
-            //return false;
+    public void addPlayers(int playersPerTeam,int batsmenPerTeam) {
+        for (int i=0;i<batsmenPerTeam;i++){
+            System.out.print((i+1)+"th batsman's name: ");
+            String playerName=scanner.nextLine();
+            scanner.nextLine();
+            this.players[i] = new Batsman(playerName);
+            System.out.println();
+        }
+        for (int i=0;i<(playersPerTeam-batsmenPerTeam);i++){
+            System.out.print((i+1)+"th bowler's name: ");
+            String playerName=scanner.nextLine();
+            scanner.nextLine();
+            this.players[i] = new Bowler(playerName);
+            System.out.println();
         }
     }
 
