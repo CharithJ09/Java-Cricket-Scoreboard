@@ -1,3 +1,3 @@
-# Java-Cricket-Scoreboard
+# Java-Cricket-FirstInningsScoreboard
 OOP PROJECT
 
