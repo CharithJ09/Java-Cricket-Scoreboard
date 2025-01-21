@@ -76,9 +76,17 @@ public class Driver {
         System.out.println("Please enter the over limit of the match: ");
         int overLimit=scanner.nextInt();
 
-
-        System.out.println("Please enter the number of balls per over: ");
-        int ballsPerOver=scanner.nextInt();
+        int ballsPerOver;
+        do {
+            System.out.println("Please enter the number of balls per over: ");
+            ballsPerOver=scanner.nextInt();
+            if (ballsPerOver<=6){
+                break;
+            }else {
+                System.out.println("Balls per over can't exceed 6. Please try again.");
+            }
+            clear();
+        } while (ballsPerOver>6);
 
         String batTeamname;
         do {
@@ -94,6 +102,7 @@ public class Driver {
             }else {
                 System.out.println("No any matches found. Please try again.");
             }
+            clear();
         }while ((!Objects.equals(batTeamname, team1.teamName))&&(!Objects.equals(batTeamname, team2.teamName)));
     }
 }
