@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 //batsmen -- updatePlayerStats(Decision decision)
 //bowler -- updateBowlerStats(Decision decision)
+//Change Batsman, Bowler references to Player
 public class Scoreboard {
     String teamA;
     String teamB;
