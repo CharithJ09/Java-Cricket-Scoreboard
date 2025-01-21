@@ -2,34 +2,17 @@ import java.util.Scanner;
 public class Match {
     Scanner scanner = new Scanner(System.in);
     int overLimit;
-    int oversPerBowler;
     int ballsPerOver;
-    int WicketLimit = ballingTeam.getPlayersPerTeam();
+    int WicketLimit;
     static Team battingTeam;
     static Team ballingTeam;
     int targetScore;
-    public Match(int overLimit, int oversPerBowler, int ballsPerOver, Team batTeam, Team ballTeam){
+    public Match(int overLimit, int ballsPerOver, Team batTeam, Team ballTeam){
         this.overLimit = overLimit;
-        this.oversPerBowler = oversPerBowler;
         this.ballsPerOver = ballsPerOver;
         battingTeam = batTeam;
         ballingTeam = ballTeam;
-    }
-
-    int setOverLimit(){
-        System.out.println("Enter Over Limit:");
-       overLimit = scanner.nextInt();
-       return overLimit;
-    }
-    int setOversPerBowler(){
-        System.out.println("Enter Overs Per Bowler:");
-        oversPerBowler = scanner.nextInt();
-        return oversPerBowler;
-    }
-    int setBallsPerOver(){
-        System.out.println("Enter Balls Per Over:");
-        ballsPerOver = scanner.nextInt();
-        return ballsPerOver;
+        WicketLimit = ballingTeam.getPlayersPerTeam()-1;
     }
     void changeInning(int previousInningScore){
         targetScore = previousInningScore;
@@ -40,5 +23,25 @@ public class Match {
         System.out.println("Press Enter to continue...");
         String input = scanner.nextLine();
         Driver.clear();
+    }
+    Player getNextBaller(Bowler previousBaller){
+        Driver.clear();
+        Player nextBaller = null;
+        for (int i=ballingTeam.batsmenPerTeam;i<=ballingTeam.playersPerTeam;i++){
+            if(previousBaller == null){
+                System.out.println(i+"."+ballingTeam.players[i].playerName);
+            }else if(previousBaller != ballingTeam.players[i]) {
+                System.out.println(i+"."+ballingTeam.players[i].playerName);
+            }
+        }
+        System.out.println("Enter index of the bowler..");
+        int index = scanner.nextInt();
+        if (index >= ballingTeam.batsmenPerTeam){
+            nextBaller = ballingTeam.players[index];
+        }else {
+            System.out.println("Invalid index...");
+        }
+        Driver.clear();
+        return nextBaller;
     }
 }
