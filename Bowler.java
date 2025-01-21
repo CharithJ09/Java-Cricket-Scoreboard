@@ -4,6 +4,8 @@ public class Bowler extends Player{
     int ballsDelivered = 0;
     int runsConceded = 0;
     int noOfOversBowled=0;
+    double economy = 0;
+
 
     public Bowler(String playerName){
         super(playerName);
@@ -41,6 +43,15 @@ public class Bowler extends Player{
                 totalDotBalls++;
                 break;
         }
+    }
+
+    public void incrementOverCount(){
+        noOfOversBowled++;
+    }
+
+    public double calculateEconomy(){
+        economy = (double)runsConceded/noOfOversBowled;
+        return economy;
     }
 
 }
