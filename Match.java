@@ -4,6 +4,17 @@ public class Match {
     int overLimit;
     int oversPerBowler;
     int ballsPerOver;
+    int WicketLimit = ballingTeam.getPlayersPerTeam();
+    static Team battingTeam;
+    static Team ballingTeam;
+    int targetScore;
+    public Match(int overLimit, int oversPerBowler, int ballsPerOver, Team batTeam, Team ballTeam){
+        this.overLimit = overLimit;
+        this.oversPerBowler = oversPerBowler;
+        this.ballsPerOver = ballsPerOver;
+        battingTeam = batTeam;
+        ballingTeam = ballTeam;
+    }
 
     int setOverLimit(){
         System.out.println("Enter Over Limit:");
@@ -20,52 +31,14 @@ public class Match {
         ballsPerOver = scanner.nextInt();
         return ballsPerOver;
     }
-}
-
-class Inning extends Match{
-    static Team battingTeam;
-    static Team ballingTeam;
-    double currentOvers;
-    int currentWickets;
-    int currentRuns;
-    static boolean secondInning = false;
-    void toss( Team batTeam, Team ballTeam){
-       battingTeam = batTeam;
-        ballingTeam = ballTeam;
-    }
-
-    void CurrentMatch(int currentRuns, double currentOvers, int currentWickets){
-        this.currentRuns = currentRuns;
-        this.currentOvers = currentOvers;
-        this.currentWickets = currentWickets;
-        changeInning();
-    }
-
-    void changeInning(){
-        if((currentWickets == (battingTeam.getPlayersPerTeam()-1))||(currentOvers == overLimit)){
-            if(!secondInning){
-                System.out.println("First inning is over...");
-                System.out.println("Total Runs: "+currentRuns);
-                System.out.println("Target is: "+(currentRuns++));
-                System.out.println("Required Run rate is: "+(currentRuns/overLimit));
-                Team temp = ballingTeam;
-                ballingTeam = battingTeam;
-                battingTeam = temp;
-                secondInning = true;
-            }else{
-                System.out.println("Match is Over...");
-            }
-        }
-    }
-
-    String nextBatsman(){
-        System.out.println("Enter Next Batsman:");
-        System.out.println(battingTeam.getPlayers());
-        return scanner.nextLine();
-    }
-    String nextBaller(){
-        System.out.println("Enter Next Baller:");
-        System.out.println(battingTeam.getPlayers());
-        return scanner.nextLine();
+    void changeInning(int previousInningScore){
+        targetScore = previousInningScore;
+        System.out.println(ballingTeam.teamName+" has to score "+(targetScore++)+" runs off"+overLimit+" overs to win...");
+        Team temp = battingTeam;
+        battingTeam = ballingTeam;
+        ballingTeam = temp;
+        System.out.println("Press Enter to continue...");
+        String input = scanner.nextLine();
+        Driver.clear();
     }
 }
