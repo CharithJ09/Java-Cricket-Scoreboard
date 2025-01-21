@@ -6,8 +6,7 @@ enum Decision{
 }
 
 public class Driver {
-    public static int playersInATeam=0;
-    public static int batsmenInATeam=0;
+
     public static void clear() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
@@ -31,7 +30,7 @@ public class Driver {
         String team01Name=scanner.nextLine();
         scanner.nextLine();
         System.out.print("Enter the number of players in a team: ");
-        playersInATeam=scanner.nextInt();
+        int playersInATeam=scanner.nextInt();
         scanner.nextLine();
         System.out.print("\n\nEnter the name of the second team: ");
         String team02Name=scanner.nextLine();
@@ -44,7 +43,7 @@ public class Driver {
 
         //Adding players to team1
         System.out.println("Please enter the number of batsmen in a team");
-        batsmenInATeam=scanner.nextInt();
+        int batsmenInATeam=scanner.nextInt();
         scanner.nextLine();
 
         System.out.println("Please enter the names of team "+team1.teamName);
