@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Team {
+    static int currentBatsmenIndex=0;
     static int teamCount = 0;
     public int teamId;
     public String teamName;
@@ -93,6 +94,12 @@ public class Team {
 
     public int getTeamId() {
         return teamId;
+    }
+    public Player getNextBatmen(){
+        Player nextBatsman = players[currentBatsmenIndex];
+        currentBatsmenIndex++;
+        return nextBatsman;
+
     }
 
 }
