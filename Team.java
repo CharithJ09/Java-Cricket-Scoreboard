@@ -57,6 +57,7 @@ public class Team {
         System.out.println("Team Score: " + teamScore);
     }
 
+
     // Getters and setters
     public String getTeamName() {
         return this.teamName;

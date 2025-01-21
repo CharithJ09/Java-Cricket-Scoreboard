@@ -1,7 +1,8 @@
 import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 import java.util.Arrays;
-
+//batsmen -- updatePlayerStats(Decision decision)
+//bowler -- updateBowlerStats(Decision decision)
 public class Scoreboard {
     String teamA;
     String teamB;
