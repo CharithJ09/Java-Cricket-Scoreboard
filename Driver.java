@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 enum Decision{
@@ -26,29 +27,41 @@ public class Driver {
         //Setting the teams
         System.out.print("Enter the name of the first team: ");
         String team01Name=scanner.nextLine();
-        //scanner.nextLine();
 
         System.out.print("Enter the name of the second team: ");
         String team02Name=scanner.nextLine();
-        //scanner.nextLine();
 
-        System.out.print("\nPlease enter the number of players in a team: ");
-        int playersInATeam=scanner.nextInt();
-        //scanner.nextLine();
+
+        clear();
+
+        int playersInATeam=0;
+        do {
+            System.out.print("Please enter the number of players in a team: ");
+            playersInATeam=scanner.nextInt();
+            if (playersInATeam<=11){
+                break;
+            }else {
+                System.out.println("Number of players should be lesser or equal to 11. Please try again.");
+            }
+        }while (playersInATeam>11);
+
 
         int batsmenInATeam=0;
         do {
-            System.out.print("Please enter the number of batsmen in a team");
+            System.out.print("Please enter the number of batsmen in a team: ");
             batsmenInATeam=scanner.nextInt();
             if ((playersInATeam-batsmenInATeam)>1){
                 break;
             }
-            System.out.println("There should be at least 2 bowlers");
+            System.out.println("There should be at least 2 bowlers. Please try again.");
         } while (((playersInATeam-batsmenInATeam)<=1));
 
 
         Team team1=new Team(team01Name,playersInATeam,batsmenInATeam);
         Team team2=new Team(team02Name,playersInATeam,batsmenInATeam);
+
+        clear();
+
 
         //Adding players to team1
         System.out.println("\nPlease enter the player names of team "+team1.teamName);
@@ -60,11 +73,38 @@ public class Driver {
         team2.addPlayers(playersInATeam,batsmenInATeam);
 
 
-        System.out.println("Please enter the over limit of the match");
+        System.out.println("Please enter the over limit of the match: ");
         int overLimit=scanner.nextInt();
 
+        int ballsPerOver;
+        do {
+            System.out.println("Please enter the number of balls per over: ");
+            ballsPerOver=scanner.nextInt();
+            if (ballsPerOver<=6){
+                break;
+            }else {
+                System.out.println("Balls per over can't exceed 6. Please try again.");
+            }
+            clear();
+        } while (ballsPerOver>6);
 
-        }
+        String batTeamname;
+        do {
+            System.out.println("Please enter the name of the batting team: ");
+            batTeamname=scanner.nextLine();
+
+            if ((Objects.equals(batTeamname, team1.teamName))){
+                Match match1=new Match(overLimit,ballsPerOver,team1,team2);
+                break;
+            }else if ((Objects.equals(batTeamname, team2.teamName))){
+                Match match1=new Match(overLimit,ballsPerOver,team2,team1);
+                break;
+            }else {
+                System.out.println("No any matches found. Please try again.");
+            }
+            clear();
+        }while ((!Objects.equals(batTeamname, team1.teamName))&&(!Objects.equals(batTeamname, team2.teamName)));
+    }
 }
 
 

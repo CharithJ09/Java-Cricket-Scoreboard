@@ -23,26 +23,20 @@ public class Team {
         this.batsmenPerTeam=batsmenPerTeam;
     }
 
-    // Default Constructor
-    public Team(){
-
-    }
 
     // Add a player to the team
     public void addPlayers(int playersPerTeam,int batsmenPerTeam) {
         for (int i=0;i<batsmenPerTeam;i++){
             System.out.print((i+1)+"th batsman's name: ");
             String playerName=scanner.nextLine();
-            scanner.nextLine();
-            this.players[i] = new Batsman(playerName);
-            System.out.println();
+            //scanner.nextLine();
+            players[i] = new Batsman(playerName);
         }
         for (int i=batsmenPerTeam;i<playersPerTeam;i++){
-            System.out.print((i+1)+"th bowler's name: ");
+            System.out.print((i-(batsmenPerTeam-1))+"th bowler's name: ");
             String playerName=scanner.nextLine();
-            scanner.nextLine();
-            this.players[i] = new Bowler(playerName);
-            System.out.println();
+            //scanner.nextLine();
+            players[i] = new Bowler(playerName);
         }
     }
 
