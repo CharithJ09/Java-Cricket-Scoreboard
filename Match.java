@@ -6,6 +6,7 @@ public class Match {
     int WicketLimit;
     static Team battingTeam;
     static Team ballingTeam;
+    int secondInningScore;
     int targetScore;
     public Match(int overLimit, int ballsPerOver, Team batTeam, Team ballTeam){
         this.overLimit = overLimit;
@@ -13,6 +14,9 @@ public class Match {
         battingTeam = batTeam;
         ballingTeam = ballTeam;
         WicketLimit = ballingTeam.getPlayersPerTeam()-1;
+    }
+    void setsecondInningScore(int sesecondInningScore){
+        this.secondInningScore = secondInningScore;
     }
     void changeInning(int previousInningScore){
         targetScore = previousInningScore;
@@ -82,13 +86,13 @@ public class Match {
         System.out.printf("+----------------------------------------------+%n");
         System.out.println();
         System.out.printf("+----------------------------------------------+%n");
-        System.out.printf("|    %-10s                         |%n",ballingTeam.teamName);
+        System.out.printf("|    %-10s                         %6d|%n",ballingTeam.teamName,targetScore);
         System.out.printf("+----------------------------------------------+%n");
         team1batting();
         System.out.printf("+----------------------------------------------+%n");
         team1balling();
         System.out.printf("+----------------------------------------------+%n");
-        System.out.printf("|    %-10s                         |%n",battingTeam.teamName);
+        System.out.printf("|    %-10s                         %6d|%n",battingTeam.teamName,secondInningScore);
         System.out.printf("+----------------------------------------------+%n");
         team2batting();
         System.out.printf("+----------------------------------------------+%n");
