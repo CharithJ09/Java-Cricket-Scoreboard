@@ -1,9 +1,9 @@
 import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 import java.util.Arrays;
-//batsmen -- updatePlayerStats(Decision decision)
-//bowler -- updateBowlerStats(Decision decision)
+
 public class FirstInningsScoreboard {
+    Match match;
     Team battingTeam;
     Team bowlingTeam;
 
@@ -31,14 +31,24 @@ public class FirstInningsScoreboard {
     String over = "0.0";
 
     FirstInningsScoreboard(Match match) {
+        this.match = match;
         this.battingTeam = Match.battingTeam;
         this.bowlingTeam = Match.ballingTeam;
         this.strikerBatsman = this.battingTeam.getNextBatmen();
         this.nonStrikerBatsman = this.battingTeam.getNextBatmen();
-        //this.currentBowler = match.getNextBowler();
+        this.currentBowler = this.match.getNextBaller(null);
         this.ballsPerOver = match.ballsPerOver;
         this.oversRemaining = match.overLimit;
         this.wicketLimit = match.WicketLimit;
+    }
+
+
+    void delay(int seconds) {
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -218,11 +228,12 @@ public class FirstInningsScoreboard {
     }
 
     //Starting the scoreboard for an innings
-    public int startFirstInningsScoreBoard()  throws InterruptedException {
+    //Returns the runs scored during the first innings
+    public int startFirstInningsScoreBoard()  {
 
         //Starting the match
         System.out.println("Starting Match...");
-        TimeUnit.SECONDS.sleep(1); // Delay for 1 seconds
+        delay(1); // 1-Second Delay
         Driver.clear();
 
         //Looping until end of overs or all wickets are down
@@ -237,18 +248,18 @@ public class FirstInningsScoreboard {
                 //Incrementing Overs bowled by the current bowler
                 ((Bowler) currentBowler).incrementOverCount();
 
-                //*****Get the next Bowler
+                this.currentBowler = this.match.getNextBaller((Bowler) currentBowler);
                 this.switchStriker();
                 Driver.clear();
 
                 //Displaying the score
                 this.displayScoreBoard();
-                TimeUnit.SECONDS.sleep(1); // Delay for 1 seconds
+                delay(1);// Delay for 1 seconds
                 Driver.clear();
 
                 //Resetting Values at the end of the over
                 System.out.println("End of Over...");
-                TimeUnit.SECONDS.sleep(1); // Delay for 1 seconds
+                delay(1);// Delay for 1 seconds
                 this.ballsRemaining = this.ballsPerOver;
                 this.overProgression = "";
                 this.oversRemaining--;

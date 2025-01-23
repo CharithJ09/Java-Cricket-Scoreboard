@@ -42,8 +42,9 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
             System.out.printf("| %19s vs %-18s |%n", battingTeam.teamName,bowlingTeam.teamName);
             System.out.printf("+-------------------------------------------+%n");
             System.out.printf("| Over:%6s |%6d - %-20d|%n", over,runsScored,wickets);
-            System.out.printf("| CRR:  %-35.2f |%n", runRate);
+            System.out.printf("| CRR:  %-5.2f | RRR: %-22.2f |%n", runRate,requiredRunRate);
             System.out.printf("+-------------------------------------------+%n");
+            System.out.printf("|      Need %3d runs in %3d balls           |%n",runNeeded,ballsRemaining);
 
             // Printing Batsman Scores
             System.out.printf("| > %-10s - %-3d Runs                   |%n", strikerBatsman.playerName,strikerScore);
@@ -56,8 +57,59 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
 
     }
 
-    public int startSecondInningsScoreboard(){
-        return 0;
+    //Starts the scoreboard for the second innings
+
+    public int startSecondInningsScoreBoard()  {
+
+        //Starting the match
+        System.out.println("Starting Match...");
+        delay(1); // 1-Second Delay
+        Driver.clear();
+
+        //Looping until end of overs or all wickets are down or run target is reached
+        while(this.oversRemaining > 0 && this.wickets < this.wicketLimit && this.runNeeded > 0){
+            Driver.clear();
+
+            //Displaying the score
+            this.displayScoreBoard();
+
+            //Detecting the End of an Over
+            if(this.ballsRemaining == 0){
+                //Incrementing Overs bowled by the current bowler
+                ((Bowler) currentBowler).incrementOverCount();
+
+                this.currentBowler = this.match.getNextBaller((Bowler) currentBowler);
+                this.switchStriker();
+                Driver.clear();
+
+                //Displaying the score
+                this.displayScoreBoard();
+                delay(1);// Delay for 1 seconds
+                Driver.clear();
+
+                //Resetting Values at the end of the over
+                System.out.println("End of Over...");
+                delay(1);// Delay for 1 seconds
+                this.ballsRemaining = this.ballsPerOver;
+                this.overProgression = "";
+                this.oversRemaining--;
+                this.currentOver++;
+                this.currentBall=0;
+                this.calculateRunRate();
+                this.over = String.valueOf(this.currentOver)+"."+String.valueOf(this.currentBall);
+                this.displayScoreBoard();
+                if (this.oversRemaining == 0) {break;}
+            }
+
+            //Updating the scoreboard based on decision
+            this.updateScoreBoard(getDecision());
+
+
+        }
+        Driver.clear();
+        System.out.println("End of Innings...");
+        this.displayScoreBoard();
+        return this.runsScored;
     }
 
 }
