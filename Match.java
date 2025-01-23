@@ -17,7 +17,7 @@ public class Match {
         WicketLimit = ballingTeam.getPlayersPerTeam()-1;
     }
     //get second inning score from scoreboard
-    void setsecondInningScore(int sesecondInningScore){
+    void setSecondInningScore(int secondInningScore){
         this.secondInningScore = secondInningScore;
     }
     //change inning and show target score to second inning
