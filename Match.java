@@ -16,11 +16,11 @@ public class Match {
         ballingTeam = ballTeam;
         WicketLimit = ballingTeam.getPlayersPerTeam()-1;
     }
-
+    //get second inning score from scoreboard
     void setsecondInningScore(int sesecondInningScore){
         this.secondInningScore = secondInningScore;
     }
-
+    //change inning and show target score to second inning
     void changeInning(int previousInningScore){
         targetScore = previousInningScore;
         System.out.println(ballingTeam.teamName+" has to score "+(targetScore++)+" runs off"+overLimit+" overs to win...");
@@ -31,7 +31,7 @@ public class Match {
         String input = scanner.nextLine();
         Driver.clear();
     }
-
+    //send next bawler to scoreboard
     Player getNextBaller(Bowler previousBaller){
         Driver.clear();
         Player nextBaller = null;
@@ -52,7 +52,7 @@ public class Match {
         Driver.clear();
         return nextBaller;
     }
-
+    //show batting and balling details of each player
     void team1batting(){
         System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Balls Faced   |  Strike Rate|%n");
         System.out.printf("+------------------------------------------------------------------------------+%n");
@@ -67,7 +67,7 @@ public class Match {
         System.out.printf("+---------------------------------------------------------------------------------------------+%n");
         for (int i=ballingTeam.batsmenPerTeam;i<=ballingTeam.playersPerTeam;i++){
                 Bowler bowler = (Bowler) ballingTeam.players[i];
-                System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6d|%6d",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.totalWickets,bowler.runsConceded);
+                System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6d|%6d",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.noOfOversBowled,bowler.totalWickets,bowler.runsConceded);
         }
     }
 
@@ -85,27 +85,48 @@ public class Match {
         System.out.printf("+---------------------------------------------------------------------------------------------+%n");
         for (int i=battingTeam.batsmenPerTeam;i<=battingTeam.playersPerTeam;i++){
             Bowler bowler = (Bowler) battingTeam.players[i];
-            System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6d|%6d",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.totalWickets,bowler.runsConceded);
+            System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6d|%6d",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.noOfOversBowled,bowler.totalWickets,bowler.runsConceded);
         }
     }
-
+    //display summery of the Match
     void MatchSummery(){
-        System.out.printf("+----------------------------------------------+%n");
-        System.out.printf("|                Match Summery                 |%n");
-        System.out.printf("+----------------------------------------------+%n");
+        if(targetScore > secondInningScore){
+            System.out.println("The wining team is "+ballingTeam.teamName);
+        }else {
+            System.out.println("The wining team is "+battingTeam.teamName);
+        }
         System.out.println();
-        System.out.printf("+----------------------------------------------+%n");
-        System.out.printf("|    %-10s                         %6d|%n",ballingTeam.teamName,targetScore);
-        System.out.printf("+----------------------------------------------+%n");
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
+        System.out.printf("|                                    Match Summery                                       |%n");
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
+        System.out.printf("| %-10s                                                                      %6d |%n",ballingTeam.teamName,targetScore);
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
         team1batting();
-        System.out.printf("+----------------------------------------------+%n");
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
         team1balling();
-        System.out.printf("+----------------------------------------------+%n");
-        System.out.printf("|    %-10s                         %6d|%n",battingTeam.teamName,secondInningScore);
-        System.out.printf("+----------------------------------------------+%n");
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
+        System.out.printf("| %-10s                                                                      %6d |%n",battingTeam.teamName,secondInningScore);
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
         team2batting();
-        System.out.printf("+----------------------------------------------+%n");
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
         team2balling();
-        System.out.printf("+-------------------------------------------+%n");
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
+
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
+        System.out.printf("|                                    Match Summery                                       |%n");
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
+        System.out.printf("| %-10s                                                                      %6d |%n",ballingTeam.teamName,targetScore);
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
+        team1batting();
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
+        team1balling();
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
+        System.out.printf("| %-10s                                                                      %6d |%n",battingTeam.teamName,secondInningScore);
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
+        team2batting();
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
+        team2balling();
+        System.out.printf("+----------------------------------------------------------------------------------------+%n");
+
     }
 }
