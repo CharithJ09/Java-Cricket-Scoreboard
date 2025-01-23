@@ -8,6 +8,7 @@ public class Match {
     static Team ballingTeam;
     int secondInningScore;
     int targetScore;
+
     public Match(int overLimit, int ballsPerOver, Team batTeam, Team ballTeam){
         this.overLimit = overLimit;
         this.ballsPerOver = ballsPerOver;
@@ -15,9 +16,11 @@ public class Match {
         ballingTeam = ballTeam;
         WicketLimit = ballingTeam.getPlayersPerTeam()-1;
     }
+
     void setsecondInningScore(int sesecondInningScore){
         this.secondInningScore = secondInningScore;
     }
+
     void changeInning(int previousInningScore){
         targetScore = previousInningScore;
         System.out.println(ballingTeam.teamName+" has to score "+(targetScore++)+" runs off"+overLimit+" overs to win...");
@@ -28,6 +31,7 @@ public class Match {
         String input = scanner.nextLine();
         Driver.clear();
     }
+
     Player getNextBaller(Bowler previousBaller){
         Driver.clear();
         Player nextBaller = null;
@@ -48,6 +52,7 @@ public class Match {
         Driver.clear();
         return nextBaller;
     }
+
     void team1batting(){
         System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Balls Faced   |  Strike Rate|%n");
         System.out.printf("+------------------------------------------------------------------------------+%n");
@@ -56,6 +61,7 @@ public class Match {
                 System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6.2f|",batsman.playerName,batsman.totalRuns,batsman.totalSixes,batsman.totalBoundaries,batsman.ballsFaced,batsman.strikeRate);
         }
     }
+
     void team1balling(){
         System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Overs Bawled   |  Wickets  |  Runs Conceded|%n");
         System.out.printf("+---------------------------------------------------------------------------------------------+%n");
@@ -64,6 +70,7 @@ public class Match {
                 System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6d|%6d",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.totalWickets,bowler.runsConceded);
         }
     }
+
     void team2batting(){
         System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Balls Faced   |  Strike Rate|%n");
         System.out.printf("+------------------------------------------------------------------------------+%n");
@@ -72,6 +79,7 @@ public class Match {
             System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6.2f|",batsman.playerName,batsman.totalRuns,batsman.totalSixes,batsman.totalBoundaries,batsman.ballsFaced,batsman.strikeRate);
         }
     }
+
     void team2balling(){
         System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Overs Bawled   |  Wickets  |  Runs Conceded|%n");
         System.out.printf("+---------------------------------------------------------------------------------------------+%n");
@@ -80,6 +88,7 @@ public class Match {
             System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6d|%6d",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.totalWickets,bowler.runsConceded);
         }
     }
+
     void MatchSummery(){
         System.out.printf("+----------------------------------------------+%n");
         System.out.printf("|                Match Summery                 |%n");
