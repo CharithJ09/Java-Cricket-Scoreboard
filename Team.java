@@ -2,9 +2,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Team {
-    static int currentBatsmenIndex=0;
-    static int teamCount = 0;
-    public int teamId;
+    int currentBatsmenIndex=0;
     public String teamName;
     Player[] players;
     int teamScore;
@@ -18,21 +16,19 @@ public class Team {
         this.playersPerTeam = playersPerTeam;
         this.players = new Player[playersPerTeam];
         this.teamScore = 0;
-        teamCount++;
-        this.teamId = teamCount;
         this.batsmenPerTeam=batsmenPerTeam;
     }
 
 
     // Add a player to the team
-    public void addPlayers(int playersPerTeam,int batsmenPerTeam) {
-        for (int i=0;i<batsmenPerTeam;i++){
+    public void addPlayers() {
+        for (int i=0;i<this.batsmenPerTeam;i++){
             System.out.print((i+1)+"th batsman's name: ");
             String playerName=scanner.nextLine();
             //scanner.nextLine();
             players[i] = new Batsman(playerName);
         }
-        for (int i=batsmenPerTeam;i<playersPerTeam;i++){
+        for (int i=this.batsmenPerTeam;i<this.playersPerTeam;i++){
             System.out.print((i-(batsmenPerTeam-1))+"th bowler's name: ");
             String playerName=scanner.nextLine();
             //scanner.nextLine();
@@ -50,16 +46,6 @@ public class Team {
         return teamScore;
     }
 
-    // Display team details
-    public void displayTeamDetails() {
-        System.out.println("Team ID: " + teamId);
-        System.out.println("Team Name: " + teamName);
-        System.out.println("Players:"+playersPerTeam);
-        System.out.println("Batsmen:"+batsmenPerTeam);
-        System.out.println("Bowlers:"+(playersPerTeam-batsmenPerTeam));
-
-    }
-
 
     // Getters and setters
     public String getTeamName() {
@@ -75,20 +61,14 @@ public class Team {
     }
 
     public int getPlayersPerTeam() {
-        return playersPerTeam;
+        return this.playersPerTeam;
     }
 
     public void setPlayersPerTeam(int playersPerTeam) {
         this.playersPerTeam = playersPerTeam;
     }
 
-    public static int getTeamCount() {
-        return teamCount;
-    }
 
-    public int getTeamId() {
-        return teamId;
-    }
     public Player getNextBatmen(){
         Player nextBatsman = players[currentBatsmenIndex];
         currentBatsmenIndex++;

@@ -1,7 +1,7 @@
 public class SecondInningsScoreboard extends FirstInningsScoreboard{
     final int runTarget;
     float requiredRunRate;
-    int runNeeded;
+    int runsNeeded;
 
     //Decrement for each valid ball bowled
     int ballsRemaining;
@@ -9,13 +9,14 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
     SecondInningsScoreboard(Match match){
         super(match);
         this.runTarget = match.targetScore;
+        this.runsNeeded =this.runTarget;
         this.ballsRemaining = match.overLimit* match.ballsPerOver;
     }
 
     //Display ___ runs required off ___ balls after calculating RRR
     void calculateRequiredRunRate(){
-        this.runNeeded = this.runTarget - this.runsScored;
-        this.requiredRunRate = (float)this.runNeeded / (float)this.oversRemaining;
+        this.runsNeeded = this.runTarget - this.runsScored;
+        this.requiredRunRate = (float)this.runsNeeded / (float)this.oversRemaining;
 
     }
 
@@ -44,7 +45,8 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
             System.out.printf("| Over:%6s |%6d - %-20d|%n", over,runsScored,wickets);
             System.out.printf("| CRR:  %-5.2f | RRR: %-22.2f |%n", runRate,requiredRunRate);
             System.out.printf("+-------------------------------------------+%n");
-            System.out.printf("|      Need %3d runs in %3d balls           |%n",runNeeded,ballsRemaining);
+            System.out.printf("|      Need %3d runs in %3d balls           |%n",runsNeeded,ballsRemaining);
+            System.out.printf("+-------------------------------------------+%n");
 
             // Printing Batsman Scores
             System.out.printf("| > %-10s - %-3d Runs                   |%n", strikerBatsman.playerName,strikerScore);
@@ -64,10 +66,9 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
         //Starting the match
         System.out.println("Starting Match...");
         delay(1); // 1-Second Delay
-        Driver.clear();
 
         //Looping until end of overs or all wickets are down or run target is reached
-        while(this.oversRemaining > 0 && this.wickets < this.wicketLimit && this.runNeeded > 0){
+        while(this.oversRemaining > 0 && this.wickets < this.wicketLimit && this.runsNeeded > 0){
             Driver.clear();
 
             //Displaying the score
@@ -107,8 +108,9 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
 
         }
         Driver.clear();
-        System.out.println("End of Innings...");
-        this.displayScoreBoard();
+        System.out.println("End of the Match...");
+        super.displayScoreBoard();
+        delay(3);
         return this.runsScored;
     }
 

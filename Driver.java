@@ -21,6 +21,9 @@ public class Driver {
     }
 
     public static void main(String[] args) {
+        Match match;
+        FirstInningsScoreboard firstInningsScoreboard;
+        SecondInningsScoreboard secondInningsScoreboard;
         Scanner scanner=new Scanner(System.in);
 
         //Setting the teams
@@ -64,12 +67,12 @@ public class Driver {
 
         //Adding players to team1
         System.out.println("\nPlease enter the player names of team "+team1.teamName);
-        team1.addPlayers(playersInATeam,batsmenInATeam);
+        team1.addPlayers();
 
 
         //Adding players to team2
         System.out.println("Please enter the player names of team "+team2.teamName);
-        team2.addPlayers(playersInATeam,batsmenInATeam);
+        team2.addPlayers();
 
         //Setting the match and Scoreboard
         System.out.println("Please enter the over limit of the match: ");
@@ -87,24 +90,45 @@ public class Driver {
             clear();
         } while (ballsPerOver>6);
 
+        match = new Match(overLimit,ballsPerOver,playersInATeam);
+
+        scanner.nextLine();
         String batTeamname;
         do {
             System.out.println("Please enter the name of the batting team: ");
             batTeamname=scanner.nextLine();
 
             if ((Objects.equals(batTeamname, team1.teamName))){
-                Match match1=new Match(overLimit,ballsPerOver,team1,team2);
-                FirstInningsScoreboard firstInningsScoreboard=new FirstInningsScoreboard(match1);
+                match.setBattingTeam(team1);
+                match.setBowlingTeam(team2);
+
                 break;
             }else if ((Objects.equals(batTeamname, team2.teamName))){
-                Match match1=new Match(overLimit,ballsPerOver,team2,team1);
-                FirstInningsScoreboard firstInningsScoreboard=new FirstInningsScoreboard(match1);
+                match.setBattingTeam(team2);
+                match.setBowlingTeam(team1);
+
                 break;
             }else {
-                System.out.println("No any matches found. Please try again.");
+                System.out.println("Invalid Team Name! Please try again.");
             }
             clear();
         }while ((!Objects.equals(batTeamname, team1.teamName))&&(!Objects.equals(batTeamname, team2.teamName)));
+
+
+        //Starting the Match
+        firstInningsScoreboard = new FirstInningsScoreboard(match);
+        int firstInningsScore  = firstInningsScoreboard.startFirstInningsScoreBoard();
+
+        //Changing innings
+        match.setSecondInningScore(firstInningsScore);
+        match.changeInning(firstInningsScore);
+
+        secondInningsScoreboard = new SecondInningsScoreboard(match);
+        int secondInningsScore  = secondInningsScoreboard.startSecondInningsScoreBoard();
+        match.setSecondInningScore(secondInningsScore);
+
+        //Ending the Match
+        match.matchSummary();
 
 
 
