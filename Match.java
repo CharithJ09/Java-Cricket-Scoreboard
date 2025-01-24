@@ -49,9 +49,7 @@ public class Match {
 
         //Modify the function to display bowlers 1...., 2...., 3.... and loop until user enters a valid index
         for (int i=bowlingTeam.batsmenPerTeam; i<=(bowlingTeam.playersPerTeam-1); i++){
-            if(previousBaller == null){
-                System.out.println(i+"."+bowlingTeam.players[i].playerName);
-            }else if(previousBaller != bowlingTeam.players[i]) {
+            if(previousBaller != bowlingTeam.players[i]) {
                 System.out.println(i+"."+bowlingTeam.players[i].playerName);
             }
         }
