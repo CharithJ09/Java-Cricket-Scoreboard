@@ -21,6 +21,7 @@ public class Driver {
     }
 
     public static void main(String[] args) {
+        clear();
         Match match;
         FirstInningsScoreboard firstInningsScoreboard;
         SecondInningsScoreboard secondInningsScoreboard;
@@ -69,10 +70,14 @@ public class Driver {
         System.out.println("\nPlease enter the player names of team "+team1.teamName);
         team1.addPlayers();
 
+        System.out.printf("---------------------------------------------%n");
+
 
         //Adding players to team2
         System.out.println("Please enter the player names of team "+team2.teamName);
         team2.addPlayers();
+
+        clear();
 
         //Setting the match and Scoreboard
         System.out.println("Please enter the over limit of the match: ");
@@ -111,7 +116,7 @@ public class Driver {
             }else {
                 System.out.println("Invalid Team Name! Please try again.");
             }
-            clear();
+
         }while ((!Objects.equals(batTeamname, team1.teamName))&&(!Objects.equals(batTeamname, team2.teamName)));
 
 

@@ -46,24 +46,32 @@ public class Match {
         Driver.clear();
         System.out.println("Select the Next Bowler: ");
         Player nextBaller = null;
+        int x=0;
+        int[] remainingBallerIndexes= new int[(battingTeam.playersPerTeam- battingTeam.batsmenPerTeam)];
 
         //Modify the function to display bowlers 1...., 2...., 3.... and loop until user enters a valid index
         for (int i=bowlingTeam.batsmenPerTeam; i<=(bowlingTeam.playersPerTeam-1); i++){
             if(previousBaller != bowlingTeam.players[i]) {
-                System.out.println((i-battingTeam.batsmenPerTeam+1)+"."+bowlingTeam.players[i].playerName);
+                remainingBallerIndexes[x]=i;
+                x++;
+                System.out.println(x+"."+bowlingTeam.players[i].playerName);
             }
         }
 
-        System.out.println("Enter index of the bowler...");
-        int index = scanner.nextInt();
-        index +=(battingTeam.batsmenPerTeam+1);
-        if ((index >= bowlingTeam.batsmenPerTeam)&&(index < bowlingTeam.playersPerTeam)){
-            nextBaller = bowlingTeam.players[index];
-        }else {
-            System.out.println("Invalid index...");
-        }
-        Driver.clear();
-        return nextBaller;
+        int index;
+        do {
+
+            System.out.println("Enter index of the bowler...");
+            index = scanner.nextInt();
+            System.out.println(remainingBallerIndexes[index]);
+            if ((index >= 1) && (index <= remainingBallerIndexes.length)) {
+                nextBaller = bowlingTeam.players[remainingBallerIndexes[index-1]];
+            } else {
+                System.out.println("Invalid index. Please try again.");
+            }
+            Driver.clear();
+            return nextBaller;
+        }while (!((index >= 1) && (index <= remainingBallerIndexes.length)));
     }
 
     //show batting and balling details of each player
