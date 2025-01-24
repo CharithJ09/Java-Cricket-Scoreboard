@@ -26,6 +26,8 @@ public class Driver {
         FirstInningsScoreboard firstInningsScoreboard;
         SecondInningsScoreboard secondInningsScoreboard;
         Scanner scanner=new Scanner(System.in);
+        int playersInATeam=0;
+        int batsmenInATeam=0;
 
         //Setting the teams
         System.out.print("Enter the name of the first team: ");
@@ -37,7 +39,6 @@ public class Driver {
 
         clear();
 
-        int playersInATeam=0;
         do {
             System.out.print("Please enter the number of players in a team: ");
             playersInATeam=scanner.nextInt();
@@ -49,7 +50,6 @@ public class Driver {
         }while (playersInATeam>11);
 
 
-        int batsmenInATeam=0;
         do {
             System.out.print("Please enter the number of batsmen in a team: ");
             batsmenInATeam=scanner.nextInt();
@@ -67,7 +67,7 @@ public class Driver {
 
 
         //Adding players to team1
-        System.out.println("\nPlease enter the player names of team "+team1.teamName);
+        System.out.println("Please enter the player names of team "+team1.teamName);
         team1.addPlayers();
 
         System.out.printf("---------------------------------------------%n");
