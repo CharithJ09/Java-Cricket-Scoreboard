@@ -70,7 +70,7 @@ public class Match {
     void team1batting(){
         System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Balls Faced   |  Strike Rate|%n");
         System.out.printf("+------------------------------------------------------------------------------+%n");
-        for (int i=0;i<=bowlingTeam.playersPerTeam;i++){
+        for (int i=0;i<bowlingTeam.batsmenPerTeam;i++){
                 Batsman batsman = (Batsman) bowlingTeam.players[i];
                 System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6.2f|",batsman.playerName,batsman.totalRuns,batsman.totalSixes,batsman.totalBoundaries,batsman.ballsFaced,batsman.strikeRate);
         }
@@ -81,7 +81,7 @@ public class Match {
     void team1balling(){
         System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Overs Bawled   |  Wickets  |  Runs Conceded|%n");
         System.out.printf("+---------------------------------------------------------------------------------------------+%n");
-        for (int i=bowlingTeam.batsmenPerTeam;i<=bowlingTeam.playersPerTeam;i++){
+        for (int i=bowlingTeam.batsmenPerTeam;i<bowlingTeam.playersPerTeam;i++){
                 Bowler bowler = (Bowler) bowlingTeam.players[i];
                 System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6d|%6d",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.noOfOversBowled,bowler.totalWickets,bowler.runsConceded);
         }
@@ -90,7 +90,7 @@ public class Match {
     void team2batting(){
         System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Balls Faced   |  Strike Rate|%n");
         System.out.printf("+------------------------------------------------------------------------------+%n");
-        for (int i=0;i<=battingTeam.playersPerTeam;i++){
+        for (int i=0;i<battingTeam.batsmenPerTeam;i++){
             Batsman batsman = (Batsman) battingTeam.players[i];
             System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6.2f|",batsman.playerName,batsman.totalRuns,batsman.totalSixes,batsman.totalBoundaries,batsman.ballsFaced,batsman.strikeRate);
         }
@@ -99,7 +99,7 @@ public class Match {
     void team2balling(){
         System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Overs Bawled   |  Wickets  |  Runs Conceded|%n");
         System.out.printf("+---------------------------------------------------------------------------------------------+%n");
-        for (int i=battingTeam.batsmenPerTeam;i<=battingTeam.playersPerTeam;i++){
+        for (int i=battingTeam.batsmenPerTeam;i<battingTeam.playersPerTeam;i++){
             Bowler bowler = (Bowler) battingTeam.players[i];
             System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6d|%6d",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.noOfOversBowled,bowler.totalWickets,bowler.runsConceded);
         }
