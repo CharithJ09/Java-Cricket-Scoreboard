@@ -63,7 +63,6 @@ public class Match {
 
             System.out.println("Enter index of the bowler...");
             index = scanner.nextInt();
-            System.out.println(remainingBallerIndexes[index]);
             if ((index >= 1) && (index <= remainingBallerIndexes.length)) {
                 nextBaller = bowlingTeam.players[remainingBallerIndexes[index-1]];
             } else {
