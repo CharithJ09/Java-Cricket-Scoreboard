@@ -4,13 +4,13 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
     int runsNeeded;
 
     //Decrement for each valid ball bowled
-    int ballsRemaining;
+    int totalBallsRemaining;
 
     SecondInningsScoreboard(Match match){
         super(match);
         this.runTarget = match.targetScore;
         this.runsNeeded =this.runTarget;
-        this.ballsRemaining = match.overLimit* match.ballsPerOver;
+        this.totalBallsRemaining= this.oversRemaining* match.ballsPerOver;
     }
 
     //Display ___ runs required off ___ balls after calculating RRR
@@ -28,7 +28,7 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
             case NO_BALL:
             case DOT_BALL: break;
             default:
-                this.ballsRemaining--;
+                this.totalBallsRemaining--;
         }
     }
 
@@ -45,7 +45,7 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
             System.out.printf("| Over:%6s |%6d - %-20d|%n", over,runsScored,wickets);
             System.out.printf("| CRR:  %-5.2f | RRR: %-22.2f |%n", runRate,requiredRunRate);
             System.out.printf("+-------------------------------------------+%n");
-            System.out.printf("|      Need %3d runs in %3d balls           |%n",runsNeeded,ballsRemaining);
+            System.out.printf("|      Need %3d runs in %3d balls           |%n",runsNeeded,totalBallsRemaining);
             System.out.printf("+-------------------------------------------+%n");
 
             // Printing Batsman Scores
@@ -76,12 +76,12 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
 
             //Detecting the End of an Over
             if(this.ballsRemaining == 0){
+                Driver.clear();
                 //Incrementing Overs bowled by the current bowler
                 ((Bowler) currentBowler).incrementOverCount();
 
                 this.currentBowler = this.match.getNextBaller((Bowler) currentBowler);
                 this.switchStriker();
-                Driver.clear();
 
                 //Displaying the score
                 this.displayScoreBoard();
