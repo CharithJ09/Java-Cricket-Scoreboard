@@ -23,13 +23,13 @@ public class Team {
     // Add a player to the team
     public void addPlayers() {
         for (int i=0;i<this.batsmenPerTeam;i++){
-            System.out.print((i+1)+"th batsman's name: ");
+            System.out.print("Batsman "+(i+1)+": ");
             String playerName=scanner.nextLine();
             //scanner.nextLine();
             players[i] = new Batsman(playerName);
         }
         for (int i=this.batsmenPerTeam;i<this.playersPerTeam;i++){
-            System.out.print((i-(batsmenPerTeam-1))+"th bowler's name: ");
+            System.out.print("Bowler "+(i-(batsmenPerTeam-1))+": ");
             String playerName=scanner.nextLine();
             //scanner.nextLine();
             players[i] = new Bowler(playerName);
