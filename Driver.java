@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -72,7 +71,7 @@ public class Driver {
         System.out.println("Please enter the player names of team "+team2.teamName);
         team2.addPlayers(playersInATeam,batsmenInATeam);
 
-
+        //Setting the match and Scoreboard
         System.out.println("Please enter the over limit of the match: ");
         int overLimit=scanner.nextInt();
 
@@ -95,15 +94,20 @@ public class Driver {
 
             if ((Objects.equals(batTeamname, team1.teamName))){
                 Match match1=new Match(overLimit,ballsPerOver,team1,team2);
+                FirstInningsScoreboard firstInningsScoreboard=new FirstInningsScoreboard(match1);
                 break;
             }else if ((Objects.equals(batTeamname, team2.teamName))){
                 Match match1=new Match(overLimit,ballsPerOver,team2,team1);
+                FirstInningsScoreboard firstInningsScoreboard=new FirstInningsScoreboard(match1);
                 break;
             }else {
                 System.out.println("No any matches found. Please try again.");
             }
             clear();
         }while ((!Objects.equals(batTeamname, team1.teamName))&&(!Objects.equals(batTeamname, team2.teamName)));
+
+
+
     }
 }
 
