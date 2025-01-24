@@ -31,7 +31,7 @@ public class Match {
     //change inning and show target score to second inning
     void changeInning(int previousInningScore){
         targetScore = previousInningScore+1;
-        System.out.println(bowlingTeam.teamName+" has to score "+(targetScore++)+" runs off "+overLimit+" overs to win...");
+        System.out.println(bowlingTeam.teamName+" has to score "+(targetScore)+" runs off "+overLimit+" overs to win...");
         Team temp = battingTeam;
         this.battingTeam = bowlingTeam;
         this.bowlingTeam = temp;
