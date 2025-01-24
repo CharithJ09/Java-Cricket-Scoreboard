@@ -5,7 +5,7 @@ public class Match {
     int ballsPerOver;
     int WicketLimit;
     static Team battingTeam;
-    static Team ballingTeam;
+    static Team bowlingTeam;
     int secondInningScore;
     int targetScore;
 
@@ -13,8 +13,8 @@ public class Match {
         this.overLimit = overLimit;
         this.ballsPerOver = ballsPerOver;
         battingTeam = batTeam;
-        ballingTeam = ballTeam;
-        WicketLimit = ballingTeam.getPlayersPerTeam()-1;
+        bowlingTeam = ballTeam;
+        WicketLimit = bowlingTeam.getPlayersPerTeam()-1;
     }
     //get second inning score from scoreboard
     void setSecondInningScore(int secondInningScore){
@@ -23,10 +23,10 @@ public class Match {
     //change inning and show target score to second inning
     void changeInning(int previousInningScore){
         targetScore = previousInningScore;
-        System.out.println(ballingTeam.teamName+" has to score "+(targetScore++)+" runs off"+overLimit+" overs to win...");
+        System.out.println(bowlingTeam.teamName+" has to score "+(targetScore++)+" runs off"+overLimit+" overs to win...");
         Team temp = battingTeam;
-        battingTeam = ballingTeam;
-        ballingTeam = temp;
+        battingTeam = bowlingTeam;
+        bowlingTeam = temp;
         System.out.println("Press Enter to continue...");
         String input = scanner.nextLine();
         Driver.clear();
@@ -35,17 +35,17 @@ public class Match {
     Player getNextBaller(Bowler previousBaller){
         Driver.clear();
         Player nextBaller = null;
-        for (int i=ballingTeam.batsmenPerTeam;i<=ballingTeam.playersPerTeam;i++){
+        for (int i=bowlingTeam.batsmenPerTeam;i<=bowlingTeam.playersPerTeam;i++){
             if(previousBaller == null){
-                System.out.println(i+"."+ballingTeam.players[i].playerName);
-            }else if(previousBaller != ballingTeam.players[i]) {
-                System.out.println(i+"."+ballingTeam.players[i].playerName);
+                System.out.println(i+"."+bowlingTeam.players[i].playerName);
+            }else if(previousBaller != bowlingTeam.players[i]) {
+                System.out.println(i+"."+bowlingTeam.players[i].playerName);
             }
         }
         System.out.println("Enter index of the bowler..");
         int index = scanner.nextInt();
-        if ((index >= ballingTeam.batsmenPerTeam)&&(index < ballingTeam.playersPerTeam)){
-            nextBaller = ballingTeam.players[index];
+        if ((index >= bowlingTeam.batsmenPerTeam)&&(index < bowlingTeam.playersPerTeam)){
+            nextBaller = bowlingTeam.players[index];
         }else {
             System.out.println("Invalid index...");
         }
@@ -56,8 +56,8 @@ public class Match {
     void team1batting(){
         System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Balls Faced   |  Strike Rate|%n");
         System.out.printf("+------------------------------------------------------------------------------+%n");
-        for (int i=0;i<=ballingTeam.playersPerTeam;i++){
-                Batsman batsman = (Batsman) ballingTeam.players[i];
+        for (int i=0;i<=bowlingTeam.playersPerTeam;i++){
+                Batsman batsman = (Batsman) bowlingTeam.players[i];
                 System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6.2f|",batsman.playerName,batsman.totalRuns,batsman.totalSixes,batsman.totalBoundaries,batsman.ballsFaced,batsman.strikeRate);
         }
     }
@@ -65,8 +65,8 @@ public class Match {
     void team1balling(){
         System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Overs Bawled   |  Wickets  |  Runs Conceded|%n");
         System.out.printf("+---------------------------------------------------------------------------------------------+%n");
-        for (int i=ballingTeam.batsmenPerTeam;i<=ballingTeam.playersPerTeam;i++){
-                Bowler bowler = (Bowler) ballingTeam.players[i];
+        for (int i=bowlingTeam.batsmenPerTeam;i<=bowlingTeam.playersPerTeam;i++){
+                Bowler bowler = (Bowler) bowlingTeam.players[i];
                 System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6d|%6d",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.noOfOversBowled,bowler.totalWickets,bowler.runsConceded);
         }
     }
@@ -91,15 +91,15 @@ public class Match {
     //display summery of the Match
     void MatchSummery(){
         if(targetScore > secondInningScore){
-            System.out.println("The wining team is "+ballingTeam.teamName);
+            System.out.println("The wining team is "+bowlingTeam.teamName);
         }else {
             System.out.println("The wining team is "+battingTeam.teamName);
         }
         System.out.println();
         System.out.printf("+----------------------------------------------------------------------------------------+%n");
-        System.out.printf("|                                    Match Summery                                       |%n");
+        System.out.printf("|                                    Match Summary                                       |%n");
         System.out.printf("+----------------------------------------------------------------------------------------+%n");
-        System.out.printf("| %-10s                                                                      %6d |%n",ballingTeam.teamName,targetScore);
+        System.out.printf("| %-10s                                                                      %6d |%n",bowlingTeam.teamName,targetScore);
         System.out.printf("+----------------------------------------------------------------------------------------+%n");
         team1batting();
         System.out.printf("+----------------------------------------------------------------------------------------+%n");

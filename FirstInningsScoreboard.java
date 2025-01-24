@@ -33,7 +33,7 @@ public class FirstInningsScoreboard {
     FirstInningsScoreboard(Match match) {
         this.match = match;
         this.battingTeam = Match.battingTeam;
-        this.bowlingTeam = Match.ballingTeam;
+        this.bowlingTeam = Match.bowlingTeam;
         this.strikerBatsman = this.battingTeam.getNextBatmen();
         this.nonStrikerBatsman = this.battingTeam.getNextBatmen();
         this.currentBowler = this.match.getNextBaller(null);
