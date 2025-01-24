@@ -54,38 +54,38 @@ public class Match {
     }
     //show batting and balling details of each player
     void team1batting(){
-        System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Balls Faced   |  Strike Rate|%n");
+        System.out.printf("|Player Name         |  Runs|  Sixes|  Boundaries|  Balls Faced|              Strike Rate|%n");
         System.out.printf("+------------------------------------------------------------------------------+%n");
         for (int i=0;i<=ballingTeam.playersPerTeam;i++){
-                Batsman batsman = (Batsman) ballingTeam.players[i];
-                System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6.2f|",batsman.playerName,batsman.totalRuns,batsman.totalSixes,batsman.totalBoundaries,batsman.ballsFaced,batsman.strikeRate);
+            Batsman batsman = (Batsman) ballingTeam.players[i];
+            System.out.printf("|%-20s|%6d|%7d|%12d|%13d|%25.2f|%n",batsman.playerName,batsman.totalRuns,batsman.totalSixes,batsman.totalBoundaries,batsman.ballsFaced,batsman.strikeRate);
         }
     }
 
     void team1balling(){
-        System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Overs Bawled   |  Wickets  |  Runs Conceded|%n");
+        System.out.printf("|Player Name         |  Runs|  Sixes|  Boundaries| Overs Bawled|  Wickets|  Runs Conceded|%n");
         System.out.printf("+---------------------------------------------------------------------------------------------+%n");
         for (int i=ballingTeam.batsmenPerTeam;i<=ballingTeam.playersPerTeam;i++){
-                Bowler bowler = (Bowler) ballingTeam.players[i];
-                System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6d|%6d",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.noOfOversBowled,bowler.totalWickets,bowler.runsConceded);
+            Bowler bowler = (Bowler) ballingTeam.players[i];
+            System.out.printf("|%-20s|%6d|%7d|%12d|%13d|%9d|%15d|%n",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.noOfOversBowled,bowler.totalWickets,bowler.runsConceded);
         }
     }
 
     void team2batting(){
-        System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Balls Faced   |  Strike Rate|%n");
+        System.out.printf("|Player Name         |  Runs|  Sixes|  Boundaries|  Balls Faced|              Strike Rate|%n");
         System.out.printf("+------------------------------------------------------------------------------+%n");
         for (int i=0;i<=battingTeam.playersPerTeam;i++){
             Batsman batsman = (Batsman) battingTeam.players[i];
-            System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6.2f|",batsman.playerName,batsman.totalRuns,batsman.totalSixes,batsman.totalBoundaries,batsman.ballsFaced,batsman.strikeRate);
+            System.out.printf("|%-20s|%6d|%7d|%12d|%13d|%25.2f|%n",batsman.playerName,batsman.totalRuns,batsman.totalSixes,batsman.totalBoundaries,batsman.ballsFaced,batsman.strikeRate);
         }
     }
 
     void team2balling(){
-        System.out.printf("|Player Name  |  Runs  |  Sixes  |  Boundaries  |  Overs Bawled   |  Wickets  |  Runs Conceded|%n");
+        System.out.printf("|Player Name         |  Runs|  Sixes|  Boundaries| Overs Bawled|  Wickets|  Runs Conceded|%n");
         System.out.printf("+---------------------------------------------------------------------------------------------+%n");
         for (int i=battingTeam.batsmenPerTeam;i<=battingTeam.playersPerTeam;i++){
             Bowler bowler = (Bowler) battingTeam.players[i];
-            System.out.printf("|%-10s|%6d|%6d|%6d|%6d|%6d|%6d",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.noOfOversBowled,bowler.totalWickets,bowler.runsConceded);
+            System.out.printf("|%-20s|%6d|%7d|%12d|%13d|%9d|%15d|%n",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.noOfOversBowled,bowler.totalWickets,bowler.runsConceded);
         }
     }
     //display summery of the Match
