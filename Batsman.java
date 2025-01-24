@@ -15,7 +15,7 @@ public class Batsman extends Player{
     }
 
     public double calculateStrikeRate(){
-        strikeRate = (double) totalRuns / ballsFaced;
+        strikeRate = (double) totalRuns / ballsFaced*100;
         return strikeRate;
     }
 }
