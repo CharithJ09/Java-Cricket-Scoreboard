@@ -93,7 +93,6 @@ public class Match {
             System.out.printf("|%-20s|%6d|%7d|%12d|%13d|%25.2f|%n",batsman.playerName,batsman.totalRuns,batsman.totalSixes,batsman.totalBoundaries,batsman.ballsFaced,batsman.strikeRate);
 
         }
-        //team1batting();
         System.out.printf("+----------------------------------------------------------------------------------------+%n");
         System.out.printf("|Player Name         |  Runs|  Sixes|  Boundaries| Overs Bawled|  Wickets|  Runs Conceded|%n");
         System.out.printf("+----------------------------------------------------------------------------------------+%n");
@@ -102,7 +101,6 @@ public class Match {
             Bowler bowler = (Bowler) player;
             System.out.printf("|%-20s|%6d|%7d|%12d|%13d|%9d|%15d|%n",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.noOfOversBowled,bowler.totalWickets,bowler.runsConceded);
         }
-        //team1balling();
         System.out.printf("+----------------------------------------------------------------------------------------+%n");
         System.out.printf("| %-10s                                                                      %6d |%n",battingTeam.teamName,secondInningScore);
         System.out.printf("+----------------------------------------------------------------------------------------+%n");
@@ -113,7 +111,6 @@ public class Match {
             Batsman batsman = (Batsman) player;
             System.out.printf("|%-20s|%6d|%7d|%12d|%13d|%25.2f|%n",batsman.playerName,batsman.totalRuns,batsman.totalSixes,batsman.totalBoundaries,batsman.ballsFaced,batsman.strikeRate);
         }
-        //team2batting();
         System.out.printf("+----------------------------------------------------------------------------------------+%n");
         System.out.printf("|Player Name         |  Runs|  Sixes|  Boundaries| Overs Bawled|  Wickets|  Runs Conceded|%n");
         System.out.printf("+----------------------------------------------------------------------------------------+%n");
@@ -122,7 +119,6 @@ public class Match {
             Bowler bowler = (Bowler) player;
             System.out.printf("|%-20s|%6d|%7d|%12d|%13d|%9d|%15d|%n",bowler.playerName,bowler.totalRuns,bowler.totalSixes,bowler.totalBoundaries,bowler.noOfOversBowled,bowler.totalWickets,bowler.runsConceded);
         }
-        //team2balling();
         System.out.printf("+----------------------------------------------------------------------------------------+%n");
     }
 }
