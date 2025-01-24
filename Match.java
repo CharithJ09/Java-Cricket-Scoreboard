@@ -50,11 +50,13 @@ public class Match {
         //Modify the function to display bowlers 1...., 2...., 3.... and loop until user enters a valid index
         for (int i=bowlingTeam.batsmenPerTeam; i<=(bowlingTeam.playersPerTeam-1); i++){
             if(previousBaller != bowlingTeam.players[i]) {
-                System.out.println(i+"."+bowlingTeam.players[i].playerName);
+                System.out.println((i-battingTeam.batsmenPerTeam+1)+"."+bowlingTeam.players[i].playerName);
             }
         }
-        System.out.println("Enter index of the bowler..");
+
+        System.out.println("Enter index of the bowler...");
         int index = scanner.nextInt();
+        index +=(battingTeam.batsmenPerTeam+1);
         if ((index >= bowlingTeam.batsmenPerTeam)&&(index < bowlingTeam.playersPerTeam)){
             nextBaller = bowlingTeam.players[index];
         }else {
