@@ -258,25 +258,23 @@ public class FirstInningsScoreboard {
                 this.displayScoreBoard();
                 delay(1);// Delay for 1 seconds
 
-                //Incrementing Overs bowled by the current bowler
-                ((Bowler) currentBowler).incrementOverCount();
 
-                this.currentBowler = this.match.getNextBaller((Bowler) currentBowler);
-                this.switchStriker();
-                Driver.clear();
-
-
-                //Resetting Values at the end of the over
-                this.ballsRemaining = this.ballsPerOver;
-                this.overProgression = "";
                 this.oversRemaining--;
-                this.currentOver++;
-                this.currentBall = 0;
-                this.calculateRunRate();
-                this.over = String.valueOf(this.currentOver) + "." + String.valueOf(this.currentBall);
-                this.displayScoreBoard();
                 if (this.oversRemaining == 0) {
                     break;
+                }else{
+                    //Resetting Values at the end of the over
+                    this.ballsRemaining = this.ballsPerOver;
+                    this.overProgression = "";
+                    this.currentOver++;
+                    this.currentBall = 0;
+                    this.calculateRunRate();
+                    this.over = String.valueOf(this.currentOver) + "." + String.valueOf(this.currentBall);
+
+                    //Incrementing Overs bowled by the current bowler
+                    ((Bowler) currentBowler).incrementOverCount();
+                    this.currentBowler = this.match.getNextBaller((Bowler) currentBowler);
+                    this.switchStriker();
                 }
             }
 

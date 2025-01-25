@@ -90,7 +90,7 @@ public class Match {
         System.out.printf("+----------------------------------------------------------------------------------------+%n");
         for (int i=0;i<bowlingTeam.batsmenPerTeam;i++){
             Batsman batsman = (Batsman) bowlingTeam.players[i];
-            System.out.printf("|%-20s|%6d|%7d|%12d|%13d|%25.2f|%n",batsman.playerName,batsman.totalRuns,batsman.totalSixes,batsman.totalBoundaries,batsman.ballsFaced,batsman.batsman.calculateStrikeRate());
+            System.out.printf("|%-20s|%6d|%7d|%12d|%13d|%25.2f|%n",batsman.playerName,batsman.totalRuns,batsman.totalSixes,batsman.totalBoundaries,batsman.ballsFaced,batsman.calculateStrikeRate());
 
         }
         System.out.printf("+----------------------------------------------------------------------------------------+%n");
