@@ -43,7 +43,7 @@ public class Match {
 
     //send next bowler to scoreboard
     Player getNextBaller(Bowler previousBaller){
-        Driver.clear();
+        System.out.println();
         System.out.println("Select the Next Bowler: ");
         Player nextBaller = null;
         int x=0;
