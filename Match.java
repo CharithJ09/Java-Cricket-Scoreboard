@@ -43,7 +43,7 @@ public class Match {
 
     //send next bowler to scoreboard
     Player getNextBaller(Bowler previousBaller){
-        System.out.println();
+        Driver.clear();
         System.out.println("Select the Next Bowler: ");
         Player nextBaller = null;
         int x=0;
@@ -65,12 +65,15 @@ public class Match {
             index = scanner.nextInt();
             if ((index >= 1) && (index <= remainingBallerIndexes.length)) {
                 nextBaller = bowlingTeam.players[remainingBallerIndexes[index-1]];
+                break;
+
             } else {
                 System.out.println("Invalid index. Please try again.");
             }
             Driver.clear();
-            return nextBaller;
+
         }while (!((index >= 1) && (index <= remainingBallerIndexes.length)));
+        return nextBaller;
     }
     
     //display summery of the Match
