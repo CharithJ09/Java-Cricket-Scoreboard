@@ -275,6 +275,7 @@ public class FirstInningsScoreboard {
                     ((Bowler) currentBowler).incrementOverCount();
                     this.currentBowler = this.match.getNextBaller((Bowler) currentBowler);
                     this.switchStriker();
+                    this.displayScoreBoard();
                 }
             }
 
@@ -285,6 +286,7 @@ public class FirstInningsScoreboard {
         }
         Driver.clear();
         System.out.println("End of Innings...");
+        delay(3);
         this.displayScoreBoard();
         return this.runsScored;
     }

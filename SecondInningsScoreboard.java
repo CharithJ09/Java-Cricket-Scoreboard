@@ -26,7 +26,7 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
         calculateRequiredRunRate();
         switch(decision){
             case NO_BALL:
-            case DOT_BALL: break;
+            case WIDE: break;
             default:
                 this.totalBallsRemaining--;
         }
@@ -100,6 +100,7 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
                     ((Bowler) currentBowler).incrementOverCount();
                     this.currentBowler = this.match.getNextBaller((Bowler) currentBowler);
                     this.switchStriker();
+                    this.displayScoreBoard();
                 }
             }
 
