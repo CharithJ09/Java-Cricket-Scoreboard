@@ -32,6 +32,7 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
         }
     }
 
+    //Displays the formatted Scoreboard for the second innings
     void displayScoreBoard(){
 
             // Printing the Scoreboard Header
@@ -60,8 +61,7 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
     }
 
     //Starts the scoreboard for the second innings
-
-    public int startSecondInningsScoreBoard()  {
+    public int startScoreBoard()  {
 
         //Starting the match
         System.out.println("Starting Match...");

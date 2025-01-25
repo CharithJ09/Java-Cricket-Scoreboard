@@ -2,7 +2,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class FirstInningsScoreboard {
+public class FirstInningsScoreboard implements Scoreboard {
     Match match;
     Team battingTeam;
     Team bowlingTeam;
@@ -45,6 +45,7 @@ public class FirstInningsScoreboard {
     }
 
 
+    //For adding a delay
     void delay(int seconds) {
         try {
             TimeUnit.SECONDS.sleep(seconds);
@@ -234,7 +235,7 @@ public class FirstInningsScoreboard {
 
     //Starting the scoreboard for an innings
     //Returns the runs scored during the first innings
-    public int startFirstInningsScoreBoard() {
+    public int startScoreBoard() {
 
         //Starting the match
         System.out.println("Starting Match...");

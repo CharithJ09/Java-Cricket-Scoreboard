@@ -122,14 +122,14 @@ public class Driver {
 
         //Starting the Match
         firstInningsScoreboard = new FirstInningsScoreboard(match);
-        int firstInningsScore  = firstInningsScoreboard.startFirstInningsScoreBoard();
+        int firstInningsScore  = firstInningsScoreboard.startScoreBoard();
 
         //Changing innings
         match.setSecondInningScore(firstInningsScore);
         match.changeInning(firstInningsScore);
 
         secondInningsScoreboard = new SecondInningsScoreboard(match);
-        int secondInningsScore  = secondInningsScoreboard.startSecondInningsScoreBoard();
+        int secondInningsScore  = secondInningsScoreboard.startScoreBoard();
         match.setSecondInningScore(secondInningsScore);
 
         //Ending the Match
