@@ -19,7 +19,6 @@ public class Team {
         this.batsmenPerTeam=batsmenPerTeam;
     }
 
-
     // Add a player to the team
     public void addPlayers() {
         for (int i=0;i<this.batsmenPerTeam;i++){
@@ -34,38 +33,6 @@ public class Team {
             //scanner.nextLine();
             players[i] = new Bowler(playerName);
         }
-    }
-
-    // Update team score
-    public void updateTeamScore(int runs) {
-        this.teamScore += runs;
-    }
-
-    // Get team score
-    public int getTeamScore() {
-        return teamScore;
-    }
-
-
-    // Getters and setters
-    public String getTeamName() {
-        return this.teamName;
-    }
-
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
-
-    public Player[] getPlayers() {
-        return players;
-    }
-
-    public int getPlayersPerTeam() {
-        return this.playersPerTeam;
-    }
-
-    public void setPlayersPerTeam(int playersPerTeam) {
-        this.playersPerTeam = playersPerTeam;
     }
 
 
