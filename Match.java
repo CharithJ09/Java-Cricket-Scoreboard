@@ -70,7 +70,6 @@ public class Match {
             } else {
                 System.out.println("Invalid index. Please try again.");
             }
-            Driver.clear();
 
         }while (!((index >= 1) && (index < remainingBallerIndexes.length)));
         return nextBaller;

@@ -51,7 +51,7 @@ public class Bowler extends Player{
 
     public double calculateEconomy(){
         if(noOfOversBowled==0){
-            return 0.0;
+            return (double)runsConceded ;
         }else{
             economy = (double)runsConceded/noOfOversBowled;
             return economy;

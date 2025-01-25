@@ -100,6 +100,7 @@ public class SecondInningsScoreboard extends FirstInningsScoreboard{
                     ((Bowler) currentBowler).incrementOverCount();
                     this.currentBowler = this.match.getNextBaller((Bowler) currentBowler);
                     this.switchStriker();
+                    Driver.clear();
                     this.displayScoreBoard();
                 }
             }
