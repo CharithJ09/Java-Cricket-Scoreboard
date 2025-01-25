@@ -112,8 +112,8 @@ public class FirstInningsScoreboard {
             case WICKET:
                 this.wickets++;
                 this.strikerScore = 0;
-                //Getting the next batsman ( checking if it is the last batsman )
-                if(this.strikerBatsman != this.battingTeam.players[this.battingTeam.playersPerTeam-1]) {
+                //Getting the next batsman ( checking if either the Striker or Non Striker is the Last)
+                if(this.strikerBatsman != this.battingTeam.players[this.battingTeam.playersPerTeam-1] && this.nonStrikerBatsman != this.battingTeam.players[this.battingTeam.playersPerTeam-1]) {
                     this.strikerBatsman = this.battingTeam.getNextBatmen();
                 }
                 this.ballsRemaining--;

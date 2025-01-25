@@ -78,7 +78,10 @@ public class Match {
     //display summery of the Match
     void matchSummary(){
         Driver.clear();
-        if(targetScore > secondInningScore){
+        if( secondInningScore == targetScore-1){
+            System.out.println("The Match is Drawn");
+        }
+        else if(targetScore > secondInningScore){
             System.out.println("The Winning Team is "+bowlingTeam.teamName);
         }else {
             System.out.println("The Winning Team is "+battingTeam.teamName);
@@ -87,7 +90,7 @@ public class Match {
         System.out.printf("+------------------------------------------------------------------+%n");
         System.out.printf("|                          Match Summary                           |%n");
         System.out.printf("+------------------------------------------------------------------+%n");
-        System.out.printf("| %-10s                                                %6d |%n",bowlingTeam.teamName,targetScore);
+        System.out.printf("| %-10s                                                %6d |%n",bowlingTeam.teamName,targetScore-1);
         System.out.printf("+------------------------------------------------------------------+%n");
         System.out.printf("|Player Name         |  Runs|    Sixes|     Boundaries| Strike Rate|%n");
         System.out.printf("+------------------------------------------------------------------+%n");
